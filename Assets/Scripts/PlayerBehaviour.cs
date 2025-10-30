@@ -18,8 +18,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float player_speed = 10;
     private float rotation_speed = 100;
     
-    [SerializeField]
-    GameObject groundCheck;
+
 
     public bool isGrounded ;
     private float verticalVelocity;
@@ -43,10 +42,14 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         Move();
-        /*
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Jump();
+            if (isGrounded)
+            {
+                Jump();
+            }
+            
         }
         if (!isGrounded)
         {
@@ -57,12 +60,12 @@ public class PlayerBehaviour : MonoBehaviour
             gravity = 0;
         }
         transform.position += new Vector3(0, gravity * Time.deltaTime, 0);
-        */
+        
     }
 
     private void Move()
     {
-        /*
+        
         float translation = Input.GetAxis("Vertical") * player_speed;
         float rotation = Input.GetAxis("Horizontal") * rotation_speed;
 
@@ -74,7 +77,7 @@ public class PlayerBehaviour : MonoBehaviour
         transform.Translate(0, 0, translation);
 
         transform.Rotate(0, rotation, 0);
-        */
+        
     }
 
 
