@@ -16,7 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     private float player_speed = 10;
-    private float rotation_speed = 100;
+    
     
 
 
@@ -66,17 +66,13 @@ public class PlayerBehaviour : MonoBehaviour
     private void Move()
     {
         
-        float translation = Input.GetAxis("Vertical") * player_speed;
-        float rotation = Input.GetAxis("Horizontal") * rotation_speed;
-
-        translation *= Time.deltaTime;
-        rotation *= Time.deltaTime;
+        float vert_translation = Input.GetAxisRaw("Vertical") ;
+        float hor_translation = Input.GetAxisRaw("Horizontal") ;
 
 
+        transform.Translate(new Vector3 (hor_translation, 0, vert_translation).normalized * Time.deltaTime * player_speed) ;
 
-        transform.Translate(0, 0, translation);
-
-        transform.Rotate(0, rotation, 0);
+        
         
     }
 
@@ -102,6 +98,8 @@ public class PlayerBehaviour : MonoBehaviour
         isGrounded = false;
     }
 
+
+    
 
 
 
