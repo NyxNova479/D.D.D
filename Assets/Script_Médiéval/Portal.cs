@@ -1,0 +1,90 @@
+using System.Drawing;
+using UnityEngine;
+
+public class Portal : MonoBehaviour
+{
+
+    [SerializeField]
+    GameObject crown;
+
+    [SerializeField]
+    GameObject portal;
+
+    [SerializeField]
+    GameObject player;
+
+    [SerializeField]
+    GameObject pique;
+
+    public static int portal_color = 1;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            for (int j = 0; j < 30; j++)
+            {
+                Instantiate(pique, new Vector3(j*5-70, -4.19f, i*5-70), Quaternion);
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if ( Crown.crown_goal > 0 )
+        {
+            if ( portal_color > 3 )
+            {
+                portal_color -= 3;
+            }
+
+            if (portal_color == 1)
+            {
+
+                if ((portal.transform.position.x - player.transform.position.x) <= 2)
+                {
+                    if ((portal.transform.position.z - player.transform.position.z) <= 2)
+                    {
+                        if ((player.transform.position.x - portal.transform.position.x) <= 2)
+                        {
+                            if ((player.transform.position.z - portal.transform.position.z) <= 2)
+                            {
+
+                                Crown.take = false;
+                                Crown.crown_goal -= 1;
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (portal_color == 2)
+            {
+
+                if ((portal.transform.position.x - player.transform.position.x) <= 2)
+                {
+                    if ((portal.transform.position.z - player.transform.position.z) <= 2)
+                    {
+                        if ((player.transform.position.x - portal.transform.position.x) <= 2)
+                        {
+                            if ((player.transform.position.z - portal.transform.position.z) <= 2)
+                            {
+
+                                Crown.take = false;
+                                Pique.activate = true;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        
+    }
+}
