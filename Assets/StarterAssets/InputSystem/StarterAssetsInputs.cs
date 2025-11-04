@@ -7,7 +7,13 @@ namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
 	{
-		[Header("Character Input Values")]
+
+        [Header("Camera Settings")]
+        public float lookSensitivity = 1f; // valeur par défaut
+
+
+
+        [Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
 		public bool jump;
@@ -49,14 +55,15 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		} 
-
-		public void LookInput(Vector2 newLookDirection)
-		{
-			look = newLookDirection;
 		}
 
-		public void JumpInput(bool newJumpState)
+        public void LookInput(Vector2 newLookDirection)
+        {
+            look = newLookDirection * lookSensitivity; 
+        }
+
+
+        public void JumpInput(bool newJumpState)
 		{
 			jump = newJumpState;
 		}
