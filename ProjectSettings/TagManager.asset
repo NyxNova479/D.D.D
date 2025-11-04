@@ -7,16 +7,19 @@ TagManager:
   - CinemachineTarget
   - GroundCheck
   - Ground
+  - Enemy
+  - Coin
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Wall
+  - Enemy
+  - Player
   - 
   - 
   - 

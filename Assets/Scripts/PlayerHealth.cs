@@ -19,6 +19,14 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    private void FixedUpdate()
+    {
+        if (gameObject.transform.position.y < -5)
+        {
+            Die();
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;

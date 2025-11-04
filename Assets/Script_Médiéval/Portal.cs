@@ -25,7 +25,7 @@ public class Portal : MonoBehaviour
         {
             for (int j = 0; j < 30; j++)
             {
-                Instantiate(pique, new Vector3(j*5-70, -4.19f, i*5-70), Quaternion);
+                Instantiate(pique, new Vector3(j*5-70, -4.19f, i*5-70), Quaternion.identity);
             }
         }
     }
