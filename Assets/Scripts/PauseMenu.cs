@@ -47,6 +47,7 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        ResumeGame();
         LoadSettings();
 
         // Ajouter les listeners
@@ -117,6 +118,7 @@ public class PauseMenu : MonoBehaviour
     public void RestartScene()
     {
         Scene currentScene = SceneManager.GetActiveScene();
+        ResumeGame();
         SceneManager.LoadScene(currentScene.name);
     }
 
