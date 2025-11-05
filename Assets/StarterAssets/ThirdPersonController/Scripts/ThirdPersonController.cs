@@ -1,6 +1,7 @@
 ﻿ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using static UnityEngine.ParticleSystem;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -98,6 +99,12 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
+        public GameObject particles;
+
+        public ParticleSystem smokeparticles;
+        
+
+
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
@@ -134,6 +141,10 @@ namespace StarterAssets
 
         private void Start()
         {
+            var emission = smokeparticles.emission;
+            emission.rateOverTime = 32f;
+            particles.SetActive(true);
+
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
@@ -220,7 +231,12 @@ namespace StarterAssets
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (_input.move == Vector2.zero)
+            {
+                targetSpeed = 0.0f;
+                var emission = smokeparticles.emission;
+                emission.rateOverTime = 0f;
+            }
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -283,6 +299,10 @@ namespace StarterAssets
         {
             if (Grounded)
             {
+
+                var emission = smokeparticles.emission;
+                emission.rateOverTime = 32f;
+
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
 
@@ -320,6 +340,11 @@ namespace StarterAssets
             }
             else
             {
+
+                var emission = smokeparticles.emission;
+                emission.rateOverTime = 0f;
+               
+
                 // reset the jump timeout timer
                 _jumpTimeoutDelta = JumpTimeout;
 
