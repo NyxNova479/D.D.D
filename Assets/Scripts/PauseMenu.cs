@@ -47,6 +47,7 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        ResumeGame();
         LoadSettings();
 
         // Ajouter les listeners
@@ -94,8 +95,6 @@ public class PauseMenu : MonoBehaviour
         MainUI.SetActive(false);
         settingsMenuUI.SetActive(false);
         PauseGame();
-
-        inputActions.FindActionMap("Player").Disable();
     }
 
     public void PauseGame()
@@ -104,6 +103,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 0f;
         GameIsPaused = true;
+        inputActions.FindActionMap("Player").Disable();
     }
 
     public void ResumeGame()
@@ -112,11 +112,13 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        inputActions.FindActionMap("Player").Enable();
     }
 
     public void RestartScene()
     {
         Scene currentScene = SceneManager.GetActiveScene();
+        ResumeGame();
         SceneManager.LoadScene(currentScene.name);
     }
 

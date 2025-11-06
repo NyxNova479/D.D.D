@@ -7,6 +7,8 @@ public class RoomDoor : MonoBehaviour
     public GameObject uiCanvasE;
     private bool playerInRange;
 
+    public InputActionAsset inputActions;
+
 
     //public InputActionAsset inputActions;
 
@@ -23,8 +25,19 @@ public class RoomDoor : MonoBehaviour
 
 
         if (uiCanvas.activeSelf)
-        { Cursor.lockState = CursorLockMode.None; Cursor.visible = true; uiCanvasE.SetActive(false); }
-        else { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
+        { 
+            Cursor.lockState = CursorLockMode.None; 
+            Cursor.visible = true; 
+            uiCanvasE.SetActive(false); 
+            inputActions.FindActionMap("Player").Disable(); 
+        }
+
+        else 
+        {
+            Cursor.lockState = CursorLockMode.Locked; 
+            Cursor.visible = false; 
+            inputActions.FindActionMap("Player").Enable();  
+        }
 
     }
 
