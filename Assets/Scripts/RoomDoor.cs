@@ -22,23 +22,6 @@ public class RoomDoor : MonoBehaviour
             
         }
         else { uiCanvas.SetActive(false); uiCanvasE.SetActive(false); }
-
-
-        if (uiCanvas.activeSelf)
-        { 
-            Cursor.lockState = CursorLockMode.None; 
-            Cursor.visible = true; 
-            uiCanvasE.SetActive(false); 
-            inputActions.FindActionMap("Player").Disable(); 
-        }
-
-        else 
-        {
-            Cursor.lockState = CursorLockMode.Locked; 
-            Cursor.visible = false; 
-            inputActions.FindActionMap("Player").Enable();  
-        }
-
     }
 
     void OnTriggerEnter(Collider other)

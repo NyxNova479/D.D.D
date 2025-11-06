@@ -10,10 +10,14 @@ public class RoomSelectionUI : MonoBehaviour
     public RoomManager roomManager;
     public ScreenFader screenfader;
 
-    //public InputActionAsset inputActions;
+    public InputActionAsset inputActions;
+
+    public PauseMenu psscript;
 
     void OnEnable()
     {
+        psscript.PourLesPortes();
+
         List<RoomData> options = roomManager.GetRandomRooms(3);
 
         for (int i = 0; i < roomButtons.Length; i++)
@@ -25,18 +29,19 @@ public class RoomSelectionUI : MonoBehaviour
             {
                 ScreenFader fader = screenfader;   
                 void OnBlack()
-                {                 
-                    Cursor.lockState = CursorLockMode.Locked;
+                {
+                   // psscript.Resume();
                     roomManager.SpawnRoom(options[index].roomPrefab);
                     gameObject.SetActive(false);                 
                     fader.OnFadeToBlack -= OnBlack;
                 }              
                 fader.OnFadeToBlack += OnBlack;
                 // inputActions.FindActionMap("Player").Enable();
-                Time.timeScale = 1f;
+                psscript.Resume();
                 fader.StartFade();
             });
         }
 
     }
 }
+
