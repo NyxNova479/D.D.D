@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8718584747262416585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6296899447156472436}
+  - component: {fileID: 4862527119688101215}
+  m_Layer: 0
+  m_Name: Arme  Boom Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6296899447156472436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718584747262416585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4862527119688101215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718584747262416585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f974eca8c0e3ef644a92e3964263a43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 9178611864504937722, guid: 62114b0351c6d0e43be1cf6dcaaff57a, type: 3}
+  projectileOrigin: {fileID: 0}
+  baseDamage: 10
+  currentDamage: 0
+  damageMultiplier: 1
+  baseFireRate: 1
+  currentFireRate: 0
+  fireRateMultiplier: 1
+  baseProjectileSize: 1
+  currentProjectileSize: 0
+  projectileSizeMultiplier: 1
+  projectileSpeed: 0
+  range: 20
+  attackSpeedScalesWithVelocity: 1
+  aimAtClosestTarget: 0
+  targetLayer: 8
+  hasProjectileLimit: 0
+  projectileLimit: 0
+  currentAmountOfProjectile: 0
+  giveInstantiator: 0
+  isDinosaurEggWeapon: 0
+  oldPos: {x: 0, y: 0, z: 0}
+  currentVelocity: 0

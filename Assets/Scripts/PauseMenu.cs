@@ -104,6 +104,16 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
         inputActions.FindActionMap("Player").Disable();
+      //  inputActions.FindActionMap("Ui").Enable();
+    }
+
+    public void PourLesPortes()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        //Time.timeScale = 0f;
+        inputActions.FindActionMap("Player").Disable();
+        //  inputActions.FindActionMap("Ui").Enable();
     }
 
     public void ResumeGame()
@@ -128,7 +138,6 @@ public class PauseMenu : MonoBehaviour
         settingsMenuUI.SetActive(false);
         MainUI.SetActive(true);
         ResumeGame();
-
         inputActions.FindActionMap("Player").Enable();
     }
 
