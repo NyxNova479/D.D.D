@@ -40,7 +40,14 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        //Debug.Log("Quit Game...");
-        Application.Quit();
+        Debug.Log("Quit Game...");
+
+        #if UNITY_EDITOR
+        // Arrête le mode Play si on est dans l’éditeur
+              UnityEditor.EditorApplication.isPlaying = false;
+        #else
+          // Ferme le jeu si on est en build
+          Application.Quit();
+        #endif
     }
 }
