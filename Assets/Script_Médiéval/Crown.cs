@@ -41,7 +41,7 @@ public class Crown : MonoBehaviour
         
         if ( take == false)
         {
-            crown.transform.position = new Vector3(socle.transform.position.x, 5, socle.transform.position.z);
+            crown.transform.position = new Vector3(socle.transform.position.x, 3, socle.transform.position.z);
         }
         
 
@@ -53,7 +53,7 @@ public class Crown : MonoBehaviour
                 {
                     if ((player.transform.position.z - crown.transform.position.z) <= 2)
                     {
-                        crown.transform.position = new Vector3(player.transform.position.x, player.transform.position.y+ 4, player.transform.position.z);
+                        crown.transform.position = new Vector3(player.transform.position.x, player.transform.position.y+ 2, player.transform.position.z);
                         take = true;
                     }
                 }

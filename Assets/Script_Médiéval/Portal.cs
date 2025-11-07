@@ -11,9 +11,6 @@ public class Portal : MonoBehaviour
     GameObject portal;
 
     [SerializeField]
-    GameObject player;
-
-    [SerializeField]
     GameObject pique;
 
     [SerializeField]
@@ -42,7 +39,7 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(UnityEngine.KeyCode.P))
+        if (Input.GetKeyDown(UnityEngine.KeyCode.P))
         {
             portal_color += 1;
         }
@@ -58,13 +55,13 @@ public class Portal : MonoBehaviour
             {
                 GetComponent<MeshRenderer>().material.color = point;
 
-                if ((portal.transform.position.x - player.transform.position.x) <= 2)
+                if ((portal.transform.position.x - crown.transform.position.x) <= 6)
                 {
-                    if ((portal.transform.position.z - player.transform.position.z) <= 2)
+                    if ((portal.transform.position.z - crown.transform.position.z) <= 6)
                     {
-                        if ((player.transform.position.x - portal.transform.position.x) <= 2)
+                        if ((crown.transform.position.x - portal.transform.position.x) <= 6)
                         {
-                            if ((player.transform.position.z - portal.transform.position.z) <= 2)
+                            if ((crown.transform.position.z - portal.transform.position.z) <= 6)
                             {
 
                                 Crown.take = false;
@@ -78,18 +75,19 @@ public class Portal : MonoBehaviour
 
             if (portal_color == 2)
             {
+                GetComponent<MeshRenderer>().material.color = piquer;
 
-                if ((portal.transform.position.x - player.transform.position.x) <= 2)
+                if ((portal.transform.position.x - crown.transform.position.x) <= 6)
                 {
-                    if ((portal.transform.position.z - player.transform.position.z) <= 2)
+                    if ((portal.transform.position.z - crown.transform.position.z) <= 6)
                     {
-                        if ((player.transform.position.x - portal.transform.position.x) <= 2)
+                        if ((crown.transform.position.x - portal.transform.position.x) <= 6)
                         {
-                            if ((player.transform.position.z - portal.transform.position.z) <= 2)
+                            if ((crown.transform.position.z - portal.transform.position.z) <= 6)
                             {
 
                                 Crown.take = false;
-                                Pique.activate = true;
+                                Pique.activate = (false == Pique.activate);
 
                             }
                         }
@@ -99,18 +97,19 @@ public class Portal : MonoBehaviour
 
             if (portal_color == 3)
             {
+                GetComponent<MeshRenderer>().material.color = boutons;
 
-                if ((portal.transform.position.x - player.transform.position.x) <= 2)
+                if ((portal.transform.position.x - crown.transform.position.x) <= 6)
                 {
-                    if ((portal.transform.position.z - player.transform.position.z) <= 2)
+                    if ((portal.transform.position.z - crown.transform.position.z) <= 6)
                     {
-                        if ((player.transform.position.x - portal.transform.position.x) <= 2)
+                        if ((crown.transform.position.x - portal.transform.position.x) <= 6)
                         {
-                            if ((player.transform.position.z - portal.transform.position.z) <= 2)
+                            if ((crown.transform.position.z - portal.transform.position.z) <= 6)
                             {
 
                                 Crown.take = false;
-                                Pique.activate = true;
+                                
 
                             }
                         }
