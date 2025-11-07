@@ -1,4 +1,4 @@
-using System.Drawing;
+using TMPro;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
@@ -15,6 +15,15 @@ public class Portal : MonoBehaviour
 
     [SerializeField]
     GameObject pique;
+
+    [SerializeField]
+    Color point;
+
+    [SerializeField]
+    Color piquer;
+
+    [SerializeField]
+    Color boutons;
 
     public static int portal_color = 1;
 
@@ -33,6 +42,10 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(UnityEngine.KeyCode.P))
+        {
+            portal_color += 1;
+        }
 
         if ( Crown.crown_goal > 0 )
         {
@@ -43,6 +56,7 @@ public class Portal : MonoBehaviour
 
             if (portal_color == 1)
             {
+                GetComponent<MeshRenderer>().material.color = point;
 
                 if ((portal.transform.position.x - player.transform.position.x) <= 2)
                 {
@@ -82,9 +96,27 @@ public class Portal : MonoBehaviour
                     }
                 }
             }
+
+            if (portal_color == 3)
+            {
+
+                if ((portal.transform.position.x - player.transform.position.x) <= 2)
+                {
+                    if ((portal.transform.position.z - player.transform.position.z) <= 2)
+                    {
+                        if ((player.transform.position.x - portal.transform.position.x) <= 2)
+                        {
+                            if ((player.transform.position.z - portal.transform.position.z) <= 2)
+                            {
+
+                                Crown.take = false;
+                                Pique.activate = true;
+
+                            }
+                        }
+                    }
+                }
+            }
         }
-
-
-        
     }
 }

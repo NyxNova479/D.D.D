@@ -24,7 +24,7 @@ public class Crown : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        take = false;
+        
     }
 
     // Update is called once per frame
@@ -55,32 +55,6 @@ public class Crown : MonoBehaviour
                     {
                         crown.transform.position = new Vector3(player.transform.position.x, player.transform.position.y+ 4, player.transform.position.z);
                         take = true;
-                    }
-                }
-            }
-        }
-
-
-        if ((crown.transform.position.x - portal.transform.position.x) <= 10)
-        {
-            if ((crown.transform.position.z - portal.transform.position.z) <= 10)
-            {
-                if ((portal.transform.position.x - crown.transform.position.x) <= 10)
-                {
-                    if ((portal.transform.position.z - crown.transform.position.z) <= 10)
-                    {
-                        if ( Portal.portal_color == 1)
-                        {
-                            crown.transform.position = new Vector3(socle.transform.position.x, 5, socle.transform.position.z);
-                            take = false;
-                            crown_goal -= 1;
-                        }
-
-                        if ( Portal.portal_color == 2)
-                        {
-                            crown.transform.position = new Vector3(socle.transform.position.x, 5, socle.transform.position.z);
-                            take = false;
-                        }
                     }
                 }
             }

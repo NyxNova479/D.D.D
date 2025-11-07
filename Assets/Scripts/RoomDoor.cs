@@ -7,6 +7,8 @@ public class RoomDoor : MonoBehaviour
     public GameObject uiCanvasE;
     private bool playerInRange;
 
+    public InputActionAsset inputActions;
+
 
     //public InputActionAsset inputActions;
 
@@ -20,12 +22,6 @@ public class RoomDoor : MonoBehaviour
             
         }
         else { uiCanvas.SetActive(false); uiCanvasE.SetActive(false); }
-
-
-        if (uiCanvas.activeSelf)
-        { Cursor.lockState = CursorLockMode.None; Cursor.visible = true; uiCanvasE.SetActive(false); }
-        else { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
-
     }
 
     void OnTriggerEnter(Collider other)
