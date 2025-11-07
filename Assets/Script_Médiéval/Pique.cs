@@ -17,13 +17,13 @@ public class Pique : MonoBehaviour
     {
         if( activate == false)
         {
-            transform.position = new Vector3(transform.position.x, 0.19f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -0.65f, transform.position.z);
 
         }
 
         else
         {
-            transform.position = new Vector3(transform.position.x, 6.5f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, 0.96f, transform.position.z);
         }
 
     }

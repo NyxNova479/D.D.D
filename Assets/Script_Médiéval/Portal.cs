@@ -11,9 +11,6 @@ public class Portal : MonoBehaviour
     GameObject portal;
 
     [SerializeField]
-    GameObject player;
-
-    [SerializeField]
     GameObject pique;
 
     [SerializeField]
@@ -25,16 +22,21 @@ public class Portal : MonoBehaviour
     [SerializeField]
     Color boutons;
 
+
+
     public static int portal_color = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        transform.position = new Vector3(Mathf.Pow(-1, Random.Range(-1, 1)) * 65, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1)) * 65);
+
         for (int i = 0; i < 30; i++)
         {
             for (int j = 0; j < 30; j++)
             {
-                Instantiate(pique, new Vector3(j*5-70, -4.19f, i*5-70), Quaternion.identity);
+                Instantiate(pique, new Vector3(j*5-70+ Random.Range(-4, 1), -4.19f, i*5-70 + Random.Range(-4, 1)), Quaternion.identity);
             }
         }
     }
@@ -42,7 +44,10 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(UnityEngine.KeyCode.P))
+
+        transform.Rotate(new Vector3(0, 0.1f, 0));
+
+        if (Input.GetKeyDown(UnityEngine.KeyCode.P))
         {
             portal_color += 1;
         }
@@ -58,17 +63,18 @@ public class Portal : MonoBehaviour
             {
                 GetComponent<MeshRenderer>().material.color = point;
 
-                if ((portal.transform.position.x - player.transform.position.x) <= 2)
+                if ((portal.transform.position.x - crown.transform.position.x) <= 3)
                 {
-                    if ((portal.transform.position.z - player.transform.position.z) <= 2)
+                    if ((portal.transform.position.z - crown.transform.position.z) <= 3)
                     {
-                        if ((player.transform.position.x - portal.transform.position.x) <= 2)
+                        if ((crown.transform.position.x - portal.transform.position.x) <= 3)
                         {
-                            if ((player.transform.position.z - portal.transform.position.z) <= 2)
+                            if ((crown.transform.position.z - portal.transform.position.z) <= 3)
                             {
 
                                 Crown.take = false;
                                 Crown.crown_goal -= 1;
+                                transform.position = new Vector3(Mathf.Pow(-1, Random.Range(-1, 1)) * 65, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1)) * 65);
 
                             }
                         }
@@ -78,18 +84,20 @@ public class Portal : MonoBehaviour
 
             if (portal_color == 2)
             {
+                GetComponent<MeshRenderer>().material.color = piquer;
 
-                if ((portal.transform.position.x - player.transform.position.x) <= 2)
+                if ((portal.transform.position.x - crown.transform.position.x) <= 3)
                 {
-                    if ((portal.transform.position.z - player.transform.position.z) <= 2)
+                    if ((portal.transform.position.z - crown.transform.position.z) <= 3)
                     {
-                        if ((player.transform.position.x - portal.transform.position.x) <= 2)
+                        if ((crown.transform.position.x - portal.transform.position.x) <= 3)
                         {
-                            if ((player.transform.position.z - portal.transform.position.z) <= 2)
+                            if ((crown.transform.position.z - portal.transform.position.z) <= 3)
                             {
 
                                 Crown.take = false;
-                                Pique.activate = true;
+                                Pique.activate = (false == Pique.activate);
+                                transform.position = new Vector3( Mathf.Pow(-1,Random.Range(-1,1))*65, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1))*65);
 
                             }
                         }
@@ -99,18 +107,19 @@ public class Portal : MonoBehaviour
 
             if (portal_color == 3)
             {
+                GetComponent<MeshRenderer>().material.color = boutons;
 
-                if ((portal.transform.position.x - player.transform.position.x) <= 2)
+                if ((portal.transform.position.x - crown.transform.position.x) <= 3)
                 {
-                    if ((portal.transform.position.z - player.transform.position.z) <= 2)
+                    if ((portal.transform.position.z - crown.transform.position.z) <= 3)
                     {
-                        if ((player.transform.position.x - portal.transform.position.x) <= 2)
+                        if ((crown.transform.position.x - portal.transform.position.x) <= 3)
                         {
-                            if ((player.transform.position.z - portal.transform.position.z) <= 2)
+                            if ((crown.transform.position.z - portal.transform.position.z) <= 3)
                             {
 
                                 Crown.take = false;
-                                Pique.activate = true;
+                                transform.position = new Vector3(Mathf.Pow(-1, Random.Range(-1, 1)) * 65, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1)) * 65);
 
                             }
                         }
