@@ -39,9 +39,11 @@ public class AllyDinoScript : MonoBehaviour
     public float jumpSpeed;
     public float jumpHeight;
     public bool isJumping;
+    bool isJumpingBis; // c'est un bool qui se met a jour 1 apres isJumping pour faire que certaines fonctions ne se lancent qu'1 frame
     public float targetDistance;
     public float currentJumpSpeed;
     public Rigidbody rb;
+
     bool destroyBool = true;
     void Start()
     {
@@ -71,7 +73,7 @@ public class AllyDinoScript : MonoBehaviour
         }
         if (isJumping)
         {
-            transform.LookAt(endJumpPos);
+            
             //float baseY = Mathf.Lerp(startJumpPos.y, endJumpPos.y, 0.8f);
             if (currentJumpSpeed > 0.5f)
             {
@@ -84,7 +86,7 @@ public class AllyDinoScript : MonoBehaviour
                 isJumping = false;
             }
 
-                //targetDistance
+            //targetDistance
             transform.position += transform.forward * currentSpeed * currentJumpSpeed * Time.deltaTime;
             //rb.useGravity = false;
             /*
@@ -111,9 +113,16 @@ public class AllyDinoScript : MonoBehaviour
             {
                 isJumping = false;
             }*/
+            isJumpingBis = true;
         }
         else
         {
+            if (isJumpingBis)
+            {
+                transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0); // le disau se redresse en gardant sa rotation y
+                isJumpingBis = false;
+            }
+            
             //rb.useGravity = true;
         }
         if (Input.GetMouseButtonDown(0)) // clic gauche
@@ -152,7 +161,7 @@ public class AllyDinoScript : MonoBehaviour
 
     void JumpAttack()
     {
-        Debug.Log("JUMP");
+        
         GameObject closestTarget = FindClosestObject(transform.position, 60, targetLayer);
         if (closestTarget != null)
         {
@@ -165,6 +174,7 @@ public class AllyDinoScript : MonoBehaviour
         {
             JumpFromThisToThis(transform.position, instantiator.transform.position + new Vector3(Random.Range(0f, 5f), 3, Random.Range(0f, 5f)), 5, 10);
         }
+        transform.LookAt(endJumpPos);
     }
 
     GameObject FindClosestObject(Vector3 center, float radius, int layer) // une fonction pour trouver l'objet le plus proche depuis un point, dans un rayon sur une couche de son choix

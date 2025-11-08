@@ -143,9 +143,9 @@ MonoBehaviour:
   instantiator: {fileID: 0}
   model3D: {fileID: 8027642725345721027}
   scriptModel3D: {fileID: 0}
-  groundLayer: 6
-  climbableLayer: 7
-  enemyLayer: 8
+  groundLayer: 3
+  climbableLayer: 6
+  enemyLayer: 7
   baseHealthPoint: 10
   scaledBaseHealthPoint: 0
   oldScaledBaseHealthPoint: 0
