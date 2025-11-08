@@ -63,6 +63,7 @@ MonoBehaviour:
   instantiator: {fileID: 0}
   hasProjectileLimit: 0
   instantiateOnSpawn: {fileID: 7248107540933663137, guid: d942da12e45012c4a9950c134d538af1, type: 3}
+  targetLayer: 7
 --- !u!135 &7796160809421840205
 SphereCollider:
   m_ObjectHideFlags: 0

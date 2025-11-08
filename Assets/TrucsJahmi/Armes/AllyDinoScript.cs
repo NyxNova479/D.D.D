@@ -32,6 +32,7 @@ public class AllyDinoScript : MonoBehaviour
     [Header("object generaux")]
     public GameObject instantiator;
     public bool hasProjectileLimit;
+    public int targetLayer;
     [Header("saut")]
     public Vector3 startJumpPos;
     public Vector3 endJumpPos;
@@ -122,7 +123,7 @@ public class AllyDinoScript : MonoBehaviour
     }
     void AOEAttack()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + (transform.forward * 0.5f), transform.localScale.x * 1.2f, 1 << 8); // on cherche tout les gameobjects dans un rayon et on les met dans l'array "hitColliders"
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + (transform.forward * 0.5f), transform.localScale.x * 1.2f, 1 << targetLayer); // on cherche tout les gameobjects dans un rayon et on les met dans l'array "hitColliders"
         // on multiplie radius au carre pour eviter d'utiliser "magnitude" plus bas qui bien plus couteux en ressources
 
         foreach (var hitCollider in hitColliders) // pour chaques gameobjects trouves
@@ -152,7 +153,7 @@ public class AllyDinoScript : MonoBehaviour
     void JumpAttack()
     {
         Debug.Log("JUMP");
-        GameObject closestTarget = FindClosestObject(transform.position, 60, 8);
+        GameObject closestTarget = FindClosestObject(transform.position, 60, targetLayer);
         if (closestTarget != null)
         {
             Vector3 finalJumpPoisition = closestTarget.transform.position;

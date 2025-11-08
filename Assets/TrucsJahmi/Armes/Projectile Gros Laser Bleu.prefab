@@ -72,17 +72,22 @@ MonoBehaviour:
   baseDamage: 0
   currentDamage: 0
   currentSpeed: 0
+  useGravity: 0
   sphereCollider: {fileID: 0}
   hitsBeforeDestroy: 1000
   currentHitsAmount: 0
   target: {fileID: 0}
   explodes: 0
   explosionRadius: 0
+  visualExplosion: {fileID: 0}
   size: 1
   currentSizeMultiplier: 0
+  instantiateOnDestruction: {fileID: 0}
   lifeSpan: 1
   instantiator: {fileID: 0}
   hasProjectileLimit: 0
+  instantiateOnSpawn: {fileID: 0}
+  targetLayer: 7
 --- !u!1001 &6805204791415202087
 PrefabInstance:
   m_ObjectHideFlags: 0

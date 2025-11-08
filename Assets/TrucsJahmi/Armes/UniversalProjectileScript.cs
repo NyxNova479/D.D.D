@@ -29,6 +29,7 @@ public class UniversalProjectileScript : MonoBehaviour
     public GameObject instantiator;
     public bool hasProjectileLimit;
     public GameObject instantiateOnSpawn;
+    public int targetLayer;
     void Start()
     {
         if (instantiateOnSpawn != null)

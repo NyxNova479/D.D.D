@@ -69,6 +69,9 @@ public class RoomManager : MonoBehaviour
 
         currentRoomIndex++;
         UpdateRoomText();
+
+        // jahmi
+        UpdatePlayer();
     }
 
     public void ResetRoomCount()
@@ -84,5 +87,12 @@ public class RoomManager : MonoBehaviour
         {
             roomCounterText.text = $"Room : {currentRoomIndex}";
         }
+    }
+
+    // script ajoute par jahmi, n'optimise pas, il y a d'autres trucs apres peut etre
+    void UpdatePlayer() // on veut remettre a 0 certains elements des armes
+    {
+        var playerWeaponHandlerScript = player.GetComponentInChildren<WeaponHandlerScript>();
+        playerWeaponHandlerScript.ResetWeapons();
     }
 }

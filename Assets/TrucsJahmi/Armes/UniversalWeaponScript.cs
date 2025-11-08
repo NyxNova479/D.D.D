@@ -211,4 +211,14 @@ public class UniversalWeaponScript : MonoBehaviour
         StartCoroutine("SecondTimer");
         
     }
+
+    /*
+     
+    if (changementDeSalle)
+    {
+        changementDeSalle = false
+        trucs a faire
+    }
+
+     */
 }

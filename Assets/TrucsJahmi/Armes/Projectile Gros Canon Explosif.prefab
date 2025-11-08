@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5849359017822729833
+--- !u!1 &3510174525691892052
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4197191712532019339}
-  - component: {fileID: 5653022652184480767}
-  - component: {fileID: 8328191062224320572}
+  - component: {fileID: 2661463964790899361}
+  - component: {fileID: 9099372745618861792}
+  - component: {fileID: 7679075535003582778}
   m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
@@ -18,36 +18,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4197191712532019339
+--- !u!4 &2661463964790899361
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5849359017822729833}
+  m_GameObject: {fileID: 3510174525691892052}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.99999976, z: 0.99999976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4786584712379769233}
+  m_Father: {fileID: 3145280345710386297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5653022652184480767
+--- !u!33 &9099372745618861792
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5849359017822729833}
+  m_GameObject: {fileID: 3510174525691892052}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8328191062224320572
+--- !u!23 &7679075535003582778
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5849359017822729833}
+  m_GameObject: {fileID: 3510174525691892052}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ca8a70d6f04731848ac04d201f42b7ad, type: 2}
+  - {fileID: 2100000, guid: aa60f71619b43bf479714238b5dd9728, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &6988292342679596631
+--- !u!1 &5218470185220228585
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,40 +94,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4786584712379769233}
-  - component: {fileID: 5170243822723901092}
-  - component: {fileID: 4590020268281562067}
-  - component: {fileID: 3957092162960118436}
+  - component: {fileID: 3145280345710386297}
+  - component: {fileID: 5205089686353907230}
+  - component: {fileID: 7650832414681913507}
   m_Layer: 9
-  m_Name: Universal Projectile
+  m_Name: Projectile Gros Canon Explosif
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4786584712379769233
+--- !u!4 &3145280345710386297
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6988292342679596631}
+  m_GameObject: {fileID: 5218470185220228585}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 12.28, z: 4.12}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.71, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4197191712532019339}
+  - {fileID: 2661463964790899361}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &5170243822723901092
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5205089686353907230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6988292342679596631}
+  m_GameObject: {fileID: 5218470185220228585}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cadb861b1336a794b980ea4be1d46ce3, type: 3}
@@ -136,24 +135,29 @@ MonoBehaviour:
   baseDamage: 0
   currentDamage: 0
   currentSpeed: 0
+  useGravity: 0
   sphereCollider: {fileID: 0}
-  hitsBeforeDestroy: 0
+  hitsBeforeDestroy: 1000
   currentHitsAmount: 0
   target: {fileID: 0}
-  explodes: 0
-  explosionRadius: 0
-  size: 0
+  explodes: 1
+  explosionRadius: 7
+  visualExplosion: {fileID: 3501302722671257279, guid: c948779bb6f219a4481e9d8cf0ecd91c, type: 3}
+  size: 1
   currentSizeMultiplier: 0
-  lifeSpan: 0
+  instantiateOnDestruction: {fileID: 0}
+  lifeSpan: 1
   instantiator: {fileID: 0}
   hasProjectileLimit: 0
---- !u!135 &4590020268281562067
+  instantiateOnSpawn: {fileID: 0}
+  targetLayer: 7
+--- !u!135 &7650832414681913507
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6988292342679596631}
+  m_GameObject: {fileID: 5218470185220228585}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -168,30 +172,3 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3957092162960118436
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6988292342679596631}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
