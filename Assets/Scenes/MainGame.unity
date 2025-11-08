@@ -243,8 +243,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Room 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
+  m_sharedMaterial: {fileID: 1260715531048141648, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -268,10 +268,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.45
-  m_fontSizeBase: 24
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 8
   m_fontSizeMax: 124
   m_fontStyle: 0
@@ -3764,8 +3764,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
+  m_sharedMaterial: {fileID: 1260715531048141648, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3789,10 +3789,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.45
-  m_fontSizeBase: 24
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 8
   m_fontSizeMax: 124
   m_fontStyle: 0
@@ -22889,7 +22889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -137.7, y: -87.8}
+  m_AnchoredPosition: {x: -139.5, y: -87.8}
   m_SizeDelta: {x: 218.7, y: 37.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &955384655
@@ -22979,7 +22979,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -9.498108, y: 0, z: 0, w: 0}
+  m_margin: {x: -219.734, y: 0, z: -5.466774, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -26359,7 +26359,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117063464}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f574ddfc8a6c044fb6af6ae65b5831e, type: 3}
   m_Name: 
@@ -26388,10 +26388,10 @@ MonoBehaviour:
   maxWeapons: 3
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   blockingLayer:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 72
   targetingUpdateRate: 0.02
   showTargetingDebug: 1
 --- !u!114 &1117063488
@@ -45344,28 +45344,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1117063465}
   allRooms:
-  - roomPrefab: {fileID: 1316805675}
+  - roomName: Room 1
+    roomPrefab: {fileID: 1316805675}
     spawnProbability: 0.2
-  - roomPrefab: {fileID: 749272500}
+  - roomName: Room 2
+    roomPrefab: {fileID: 749272500}
     spawnProbability: 0.2
-  - roomPrefab: {fileID: 639346436}
+  - roomName: Room 3
+    roomPrefab: {fileID: 639346436}
     spawnProbability: 0.2
-  - roomPrefab: {fileID: 5188095045568544310}
+  - roomName: Room 4
+    roomPrefab: {fileID: 5188095045568544310}
     spawnProbability: 0.2
-  - roomPrefab: {fileID: 6165188399724600266}
+  - roomName: Room 5
+    roomPrefab: {fileID: 6165188399724600266}
     spawnProbability: 0.2
-  - roomPrefab: {fileID: 6165188398549220114}
+  - roomName: Room 6
+    roomPrefab: {fileID: 6165188398549220114}
     spawnProbability: 0
-  - roomPrefab: {fileID: 6165188399826085221}
+  - roomName: Room 7
+    roomPrefab: {fileID: 6165188399826085221}
     spawnProbability: 0
-  - roomPrefab: {fileID: 6165188399009354897}
+  - roomName: Room 8
+    roomPrefab: {fileID: 6165188399009354897}
     spawnProbability: 0
-  - roomPrefab: {fileID: 6165188399703870812}
+  - roomName: Room 9
+    roomPrefab: {fileID: 6165188399703870812}
     spawnProbability: 0
-  - roomPrefab: {fileID: 6165188398835138805}
+  - roomName: Room 10
+    roomPrefab: {fileID: 6165188398835138805}
     spawnProbability: 0
   currentRoom: {fileID: 450852801}
   roomCounterText: {fileID: 955384655}
+  startingRoom: {fileID: 450852801}
+  startingRoomData:
+    roomName: Starting Room
+    roomPrefab: {fileID: 450852801}
+    spawnProbability: 0
 --- !u!114 &1571209115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46526,8 +46541,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Room 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
+  m_sharedMaterial: {fileID: 1260715531048141648, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -46551,10 +46566,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.45
-  m_fontSizeBase: 24
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 8
   m_fontSizeMax: 124
   m_fontStyle: 0
