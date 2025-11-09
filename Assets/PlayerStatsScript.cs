@@ -1,0 +1,106 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+public class PlayerStatsScript : MonoBehaviour
+{
+    [Header("Health Points")]
+    public float baseHealthPoint;
+    public float currentMaxHealthPoint;
+    public float currentHealthPoint;
+    public float healthPointMultiplier;
+    [Header("Attack Damage")]
+    public float baseAttackDamageMultiplier;
+    public float currentAttackDamageMultiplier;
+    [Header("Attack Rate")]
+    public float baseAttackRateMultiplier;
+    public float currentAttackRateMultiplier;
+    [Header("Attack Size")]
+    public float baseAttackSizeMultiplier;
+    public float currentAttackSizeMultiplier;
+    [Header("Movement Speed")]
+    public float baseMovementSpeed;
+    public float currentMovementSpeed;
+    public float movementSpeedMultiplier;
+
+    float oldCurrentMovementSpeed;
+    [Header("Jump Height")]
+    public float baseJumpHeight;
+    public float currentJumpHeight;
+    public float jumpHeightMultiplier;
+    [Header("General")]
+    public PauseMenu pausemenu;
+    [Header("UI")]
+    public GameObject DeathScreenCanvas;
+    public TMP_Text healthUi;
+    public Image healthFill;
+    void Start()
+    {
+        StartingSetUpCurrentStats();
+    }
+
+    void Update()
+    {
+        if (oldCurrentMovementSpeed != currentMovementSpeed) // mettre a jour la vitesse si il y a un changement
+        {
+            oldCurrentMovementSpeed = currentMovementSpeed;
+            //gameObject.GetComponent<ThirdPersonController>().MoveSpeed = currentMovementSpeed;
+            gameObject.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed = currentMovementSpeed;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (gameObject.transform.position.y < -5)
+        {
+            Die();
+        }
+    }
+
+    void StartingSetUpCurrentStats()
+    {
+        //les stats basiques
+        currentMaxHealthPoint = baseHealthPoint;
+        currentHealthPoint = currentMaxHealthPoint;
+        currentJumpHeight = baseJumpHeight;
+        currentMovementSpeed = baseMovementSpeed;
+        //les multiplicateurs basiques
+        currentAttackDamageMultiplier = baseAttackDamageMultiplier;
+        currentAttackRateMultiplier = baseAttackRateMultiplier;
+        currentAttackSizeMultiplier = baseAttackSizeMultiplier;
+    }
+
+    public void TakeDamage(float damage)
+    {        
+        currentHealthPoint -= damage;
+        if (currentHealthPoint < 0) currentHealthPoint = 0;
+        UpdateHealthUI();
+
+        if (currentHealthPoint <= 0) Die();
+    }
+
+    public void Heal(float amount)
+    {
+       /* currentHealthPoint += amount;
+        if (currentHealthPoint > currentMaxHealthPoint) currentHealthPoint = currentMaxHealthPoint;
+        UpdateHealthUI();*/
+    }
+
+    void UpdateHealthUI()
+    {
+        if (healthFill)
+            healthFill.fillAmount = currentHealthPoint / currentMaxHealthPoint;
+
+        if (healthUi)
+        {
+            healthUi.text = (Mathf.Round(currentHealthPoint) + "/" + currentMaxHealthPoint);
+        }
+    }
+
+    void Die()
+    {
+        DeathScreenCanvas.SetActive(true);
+        pausemenu.PauseGame();
+        Debug.Log("Player est mort !");
+
+    }
+}

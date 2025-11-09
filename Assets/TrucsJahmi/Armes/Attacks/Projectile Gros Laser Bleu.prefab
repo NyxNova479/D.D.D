@@ -88,6 +88,7 @@ MonoBehaviour:
   hasProjectileLimit: 0
   instantiateOnSpawn: {fileID: 0}
   targetLayer: 7
+  damageDisplayColor: {r: 0, g: 1, b: 0.97150254, a: 1}
 --- !u!1001 &6805204791415202087
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -77,6 +77,7 @@ MonoBehaviour:
   targetDistance: 0
   currentJumpSpeed: 0
   rb: {fileID: 8147679083197446489}
+  damageDisplayColor: {r: 1, g: 0.359375, b: 0, a: 1}
 --- !u!135 &5748286619755394120
 SphereCollider:
   m_ObjectHideFlags: 0

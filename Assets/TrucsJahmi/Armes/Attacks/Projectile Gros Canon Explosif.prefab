@@ -151,6 +151,7 @@ MonoBehaviour:
   hasProjectileLimit: 0
   instantiateOnSpawn: {fileID: 0}
   targetLayer: 7
+  damageDisplayColor: {r: 1, g: 0.8272578, b: 0, a: 1}
 --- !u!135 &7650832414681913507
 SphereCollider:
   m_ObjectHideFlags: 0

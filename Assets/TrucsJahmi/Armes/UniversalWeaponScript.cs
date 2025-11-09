@@ -42,6 +42,7 @@ public class UniversalWeaponScript : MonoBehaviour
     public bool isDinosaurEggWeapon;
     public Vector3 oldPos;
     public float currentVelocity;
+
     void Start()
     {
         StartCoroutine("SecondTimer");
@@ -146,7 +147,7 @@ public class UniversalWeaponScript : MonoBehaviour
         {
             float currentDistance = (center - hitCollider.transform.position).sqrMagnitude; // on calcul la distance entre le centre et l'objet actuel
                                                                            // on evite la racine carre avec "sqrMagnitude"
-            Debug.Log(currentDistance);                                                                                 // on cherche la distance la plus petite
+            //Debug.Log(currentDistance);                                                                                 // on cherche la distance la plus petite
             if (smallestDistance > currentDistance) // si la distance actuelle est plus petite que la precedente
             {
                 

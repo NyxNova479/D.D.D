@@ -29,6 +29,7 @@ public class UniversalEnemyScript : MonoBehaviour
     public float attackTimer;
     public float attackRate;
     public float attackReach;
+    bool canAttack;
 
     [Header("Mouvements")]
     public float movementSpeed;
@@ -45,6 +46,7 @@ public class UniversalEnemyScript : MonoBehaviour
     public float maxMergeSize;
     [Header("Afficher degats subits")]
     public GameObject billboard;
+    public Color colorOfTakenDamage;
     void Start()
     {
         StartCoroutine("SecondTimer");
@@ -69,19 +71,31 @@ public class UniversalEnemyScript : MonoBehaviour
         oldHealthPercentage = currentHealthPercentage;
         //model3D.GetComponent<Enemy3DModelScript>().normalSize = transform.localScale.x;
         //Debug.Log(transform.localScale);
+        ScaleStatsWithSize();
     }
     void Update()
     {
-        
-        
-       
+
+        if (!canAttack && attackTimer < attackRate)
+        {
+            attackTimer += Time.deltaTime;
+        }
+        else
+        {
+            attackTimer = 0;
+            canAttack = true;
+            //Debug.Log("dist");
+        }
+
         if (currentHealthPoint < oldHP) // calculer les degats qu'on a subit
         { 
             currentHealthPercentage = currentHealthPoint * 100 / scaledBaseHealthPoint;
             // afficher les degats
             var instantiated = Instantiate(billboard, transform.position, Quaternion.identity);
-            instantiated.GetComponent<BillboardSpriteScript>().billboardText.text = ((int)(oldHP - currentHealthPoint)).ToString();
-            instantiated.GetComponent<BillboardSpriteScript>().instantiatorSizeOffset = transform.localScale.z / 2;
+            var instantiatedScript = instantiated.GetComponent<BillboardSpriteScript>();
+            instantiatedScript.billboardText.text = ((int)(oldHP - currentHealthPoint)).ToString();
+            instantiatedScript.instantiatorSizeOffset = transform.localScale.z / 2;
+            instantiatedScript.color = colorOfTakenDamage;
             oldHP = currentHealthPoint;
             //model3D.GetComponent<Enemy3DModelScript>().tookAHit = true;
 
@@ -115,7 +129,7 @@ public class UniversalEnemyScript : MonoBehaviour
         {
             Destruction();
         }
-        if (transform.position.y < -100)
+        if (transform.position.y < -5)
         {
             Destruction();
         }
@@ -157,7 +171,7 @@ public class UniversalEnemyScript : MonoBehaviour
     }
     float CalculateDistanceFromTarget()
     {
-        float distance = (target.transform.position - transform.position).magnitude;
+        float distance = (target.transform.position - transform.position).sqrMagnitude;
         return distance;
     }
     void GroundDetection()
@@ -172,44 +186,46 @@ public class UniversalEnemyScript : MonoBehaviour
     }
     void ScaleStatsWithSize() // augmente les statistiques de l'ennemi selon la nouvelle taille en gardant les proportions actuelles
     {
-        scaledBaseHealthPoint = (baseHealthPoint * transform.localScale.x) * transform.localScale.x * 2;
+        scaledBaseHealthPoint = (baseHealthPoint * transform.localScale.x) * transform.localScale.x;
         float newCurrentHP = (currentHealthPoint * scaledBaseHealthPoint) / oldScaledBaseHealthPoint;
         currentHealthPoint = newCurrentHP;
         oldScaledBaseHealthPoint = scaledBaseHealthPoint;
-        scaledBaseDamage = baseDamage * transform.localScale.x * transform.localScale.x * 3;
+        scaledBaseDamage = baseDamage * transform.localScale.x * transform.localScale.x;
+        damageToDeal = scaledBaseDamage;
         oldHP = currentHealthPoint;
+        attackReach = transform.localScale.x * 0.75f;
         //model3D.GetComponent<Enemy3DModelScript>().normalSize = transform.localScale.x;
     }
     void Destruction()
     {
-        instantiator.GetComponent<EnemySpawnerScript>().enemiesExisting.Remove(gameObject); // on se retire des listes avant de partir :'(
+        instantiator.GetComponent<EnemySpawnerScript>().enemiesExisting.Remove(gameObject); // on se retire des listes avant de partir vers d'autres cieux :')
         Destroy(gameObject);
     }
-
-    //
     
     void Attack()
     {
-        if( attackTimer < attackRate)
+        if(canAttack)
         {
-            attackTimer += Time.deltaTime;
-        }
-        else
-        {
-            attackTimer = 0;
-            target.GetComponent<BOBMNUCLAIRscripttest>().TakeDamage(damageToDeal);
+            if (damageToDeal <= 0)
+            {
+                damageToDeal = 1;
+            }
+            target.GetComponent<PlayerStatsScript>().TakeDamage(damageToDeal);
+            canAttack = false;
+            //Debug.Log("dist");
         }
     }
 
-    IEnumerator SecondTimer() // detruire apres 0.1 seconde
+    IEnumerator SecondTimer()
     {
-        
-        yield return new WaitForSeconds(0.1f);
         float dist = CalculateDistanceFromTarget();
-        if (dist <= attackReach)
+        if (dist <= attackReach * attackReach) // comme on utilise sqrMagnitude au lieu de magnitude la distance obtenue est au carre donc on compare au carre, c'est moins couteux que faire une racine carre
         {
+            
             Attack();
         }
+        yield return new WaitForSeconds(0.1f);
+        
         StartCoroutine("SecondTimer");
     }
 }

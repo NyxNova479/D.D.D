@@ -26401,7 +26401,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117063464}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45738183b792f6a44b7a4864a5214517, type: 3}
   m_Name: 
@@ -26410,6 +26410,38 @@ MonoBehaviour:
   currentHealth: 100
   DeathScreenCanvas: {fileID: 1295317447}
   pausemenu: {fileID: 1571209116}
+  healthUi: {fileID: 514046657}
+  healthFill: {fileID: 1959742572}
+--- !u!114 &1117063489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117063464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf6c41a16ca0fe45bdca587e7dccffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealthPoint: 10000
+  currentMaxHealthPoint: 0
+  currentHealthPoint: 0
+  healthPointMultiplier: 1
+  baseAttackDamageMultiplier: 1
+  currentAttackDamageMultiplier: 0
+  baseAttackRateMultiplier: 1
+  currentAttackRateMultiplier: 0
+  baseAttackSizeMultiplier: 1
+  currentAttackSizeMultiplier: 0
+  baseMovementSpeed: 6
+  currentMovementSpeed: 0
+  movementSpeedMultiplier: 1
+  baseJumpHeight: 1
+  currentJumpHeight: 0
+  jumpHeightMultiplier: 1
+  pausemenu: {fileID: 1571209116}
+  DeathScreenCanvas: {fileID: 1295317447}
   healthUi: {fileID: 514046657}
   healthFill: {fileID: 1959742572}
 --- !u!1 &1117475736
@@ -56085,6 +56117,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 439349486}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1117063489}
     - targetCorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1117063466}

@@ -7,6 +7,7 @@ public class BillboardSpriteScript : MonoBehaviour
     float rngX;
     float y;
     public float instantiatorSizeOffset;
+    public Color color;
     void Start()
     {
         transform.forward = Camera.main.transform.forward;
@@ -23,6 +24,7 @@ public class BillboardSpriteScript : MonoBehaviour
             transform.position += -transform.right * instantiatorSizeOffset;//new Vector3(0, 0, -instantiatorSizeOffset);
         }
         StartCoroutine("Timer");
+        billboardText.color = color;
     }
     void Update()
     {

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 3815292238913738923, guid: 4fff87499fc0734458d8ea09d5446262, type: 3}
   projectileOrigin: {fileID: 0}
-  baseDamage: 10
+  baseDamage: 20
   currentDamage: 0
   damageMultiplier: 1
   baseFireRate: 4

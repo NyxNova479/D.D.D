@@ -45,6 +45,8 @@ public class AllyDinoScript : MonoBehaviour
     public Rigidbody rb;
 
     bool destroyBool = true;
+
+    public Color damageDisplayColor;
     void Start()
     {
         StartCoroutine("SecondTimer");
@@ -138,7 +140,13 @@ public class AllyDinoScript : MonoBehaviour
         foreach (var hitCollider in hitColliders) // pour chaques gameobjects trouves
         {
             currentHitsAmount++;
-            hitCollider.gameObject.GetComponent<UniversalEnemyScript>().currentHealthPoint -= currentDamage; // infliger des degats a l'objet touche
+            var hitScript = hitCollider.gameObject.GetComponent<UniversalEnemyScript>();
+            hitScript.currentHealthPoint -= currentDamage; // infliger des degats a l'objet touche
+            hitScript.colorOfTakenDamage = damageDisplayColor; //Color.green;
+            /*
+            var hitScript = hitCollider.gameObject.GetComponent<UniversalEnemyScript>();
+        hitScript.currentHealthPoint -= currentDamage; // infliger des degats a l'objet touche
+        hitScript.colorOfTakenDamage = damageDisplayColor;*/
             hungerPercentage += hungerRestoredOnHit;
             succefulAttacksCount++;
         }

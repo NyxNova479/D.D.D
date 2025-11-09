@@ -30,6 +30,7 @@ public class UniversalProjectileScript : MonoBehaviour
     public bool hasProjectileLimit;
     public GameObject instantiateOnSpawn;
     public int targetLayer;
+    public Color damageDisplayColor;
     void Start()
     {
         if (instantiateOnSpawn != null)
@@ -57,7 +58,9 @@ public class UniversalProjectileScript : MonoBehaviour
         
         if (collision.gameObject.GetComponent<UniversalEnemyScript>()) // verifier l'identite de l'objet touche
         {
-            collision.gameObject.GetComponent<UniversalEnemyScript>().currentHealthPoint -= currentDamage; // infliger des degats a l'objet touche
+            var hitScript = collision.gameObject.GetComponent<UniversalEnemyScript>();
+            hitScript.currentHealthPoint -= currentDamage; // infliger des degats a l'objet touche
+            hitScript.colorOfTakenDamage = damageDisplayColor;
         }
         currentHitsAmount++; // compter le nombre de collision
         if (explodes)
