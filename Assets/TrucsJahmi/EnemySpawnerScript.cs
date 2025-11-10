@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 public class EnemySpawnerScript : MonoBehaviour
 {
@@ -34,11 +35,6 @@ public class EnemySpawnerScript : MonoBehaviour
         StartCoroutine("SpawnTimer");
     }
 
-    void Update()
-    {
-
-    }
-        
     void GenerateSpawnCoordinates()
     {
         // on genere une coordonee autour du joueur dans une direction au hasard, a une didtance au hasard entre a et b
@@ -51,6 +47,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
         finalXCoords = rngX * rngDistance / magnitude; // on aligne la magnitude sur la distance voulue
         finalZCoords = rngZ * rngDistance / magnitude;
+        finalYCoords += 0.5f;
     }
 
     IEnumerator SpawnTimer()
@@ -74,9 +71,13 @@ public class EnemySpawnerScript : MonoBehaviour
                             for (int f = 0; f < failedSpawns + 1; f++) // on ajoute les enemis qui ont rates leurs spawn
                             {
                                 //                   instantie           un ennemi au hasard                         autour du joueur   la ou il y a un sol approprie + le nombre d'enemi a empiler - la hauteur du joueur pour compensser 
-                                var instatiated = Instantiate(enemies[Random.Range(0, enemies.Length)], player.transform.position + new Vector3(finalXCoords, finalYCoords + f - player.transform.position.y, finalZCoords), transform.rotation); // tu apparait ici                                                                                                                                  
+                                var instatiated = Instantiate(enemies[Random.Range(0, enemies.Length)], player.transform.position + new Vector3(finalXCoords, finalYCoords + f - player.transform.position.y, finalZCoords), transform.rotation); // tu apparait ici
+
+                                instatiated.transform.parent = transform; //les rendre fils de l'enemy spawner 
+
                                 instatiated.GetComponent<UniversalEnemyScript>().target = player; // ta cible c'est lui
                                 instatiated.GetComponent<UniversalEnemyScript>().instantiator = gameObject; // c'est moi qui t'ai creer
+
                                 enemiesExisting.Add(instatiated); // tu vas dans la liste
                                 //Debug.Log(finalYCoords + f);
                                 if (failedSpawns > 0)

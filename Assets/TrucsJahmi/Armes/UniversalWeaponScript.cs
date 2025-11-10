@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
-using static UnityEngine.GraphicsBuffer;
-using UnityEditor.ShaderGraph.Internal;
+//using static UnityEngine.GraphicsBuffer;
+//using UnityEditor.ShaderGraph.Internal;
 public class UniversalWeaponScript : MonoBehaviour
 {
     [Header("projectile de l'arme")]

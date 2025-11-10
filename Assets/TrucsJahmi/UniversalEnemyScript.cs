@@ -196,7 +196,7 @@ public class UniversalEnemyScript : MonoBehaviour
         attackReach = transform.localScale.x * 0.75f;
         //model3D.GetComponent<Enemy3DModelScript>().normalSize = transform.localScale.x;
     }
-    void Destruction()
+    public void Destruction()
     {
         instantiator.GetComponent<EnemySpawnerScript>().enemiesExisting.Remove(gameObject); // on se retire des listes avant de partir vers d'autres cieux :')
         Destroy(gameObject);

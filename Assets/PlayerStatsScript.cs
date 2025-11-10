@@ -36,6 +36,7 @@ public class PlayerStatsScript : MonoBehaviour
     void Start()
     {
         StartingSetUpCurrentStats();
+        UpdateHealthUI();
     }
 
     void Update()
@@ -100,7 +101,7 @@ public class PlayerStatsScript : MonoBehaviour
     {
         DeathScreenCanvas.SetActive(true);
         pausemenu.PauseGame();
-        Debug.Log("Player est mort !");
+       // Debug.Log("Player est mort !");
 
     }
 }
