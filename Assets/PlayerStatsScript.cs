@@ -8,6 +8,10 @@ public class PlayerStatsScript : MonoBehaviour
     public float currentMaxHealthPoint;
     public float currentHealthPoint;
     public float healthPointMultiplier;
+    [Header("Passive Healing")]
+    public float basePassiveHealing;
+    public float currentPassiveHealing;
+    public float passiveHealingMultiplier;
     [Header("Attack Damage")]
     public float baseAttackDamageMultiplier;
     public float currentAttackDamageMultiplier;
@@ -37,6 +41,7 @@ public class PlayerStatsScript : MonoBehaviour
     {
         StartingSetUpCurrentStats();
         UpdateHealthUI();
+        UpdateStats();
     }
 
     void Update()
@@ -86,7 +91,13 @@ public class PlayerStatsScript : MonoBehaviour
         UpdateHealthUI();*/
     }
 
-    void UpdateHealthUI()
+    public void UpdateStats()
+    {
+        currentMaxHealthPoint = baseHealthPoint * healthPointMultiplier;
+        UpdateHealthUI();
+    }
+
+        void UpdateHealthUI()
     {
         if (healthFill)
             healthFill.fillAmount = currentHealthPoint / currentMaxHealthPoint;

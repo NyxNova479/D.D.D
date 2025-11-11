@@ -5,10 +5,10 @@ public class UniversalEnemyScript : MonoBehaviour
 {
     [Header("Objets generaux")]
     public GameObject target;
-    public GameObject playerHeath;
+
     public GameObject instantiator;
     public GameObject model3D;
-    public Enemy3DModelScript scriptModel3D;
+    Enemy3DModelScript scriptModel3D;
     public int groundLayer;
     public int climbableLayer;
     public int enemyLayer;

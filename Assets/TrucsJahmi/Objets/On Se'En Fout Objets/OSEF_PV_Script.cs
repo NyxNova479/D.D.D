@@ -15,7 +15,7 @@ public class OSEF_PV_Script : MonoBehaviour
     {
         if (!hasBeenApplied)
         {
-            //player.GetComponent<PlayerStatsScript>().healthPointMultiplier += multiplicativeHPBonus;
+            player.GetComponent<PlayerStatsScript>().healthPointMultiplier += multiplicativeHPBonus;
             hasBeenApplied = true;
         }
     }

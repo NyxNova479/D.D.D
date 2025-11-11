@@ -12,15 +12,15 @@ public class ItemHandlerScript : MonoBehaviour
 
     void Update()
     {
-        
+        UseItems();
     }
 
     void UseItems()
     {
-        /*for (int i = 0; i < objectsToFlatten.Length; i++)
+        /*for (int i = 0; i < activeItemList.Count; i++)
         {
-            activeItemList[i].GetComponentApplyItemEffect(player);
+            activeItemList[i].GetComponent<ApplyItemEffect();
         }*/
-
+        player.GetComponent<PlayerStatsScript>().UpdateStats();
     }
 }
