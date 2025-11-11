@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 //using static UnityEngine.GraphicsBuffer;
 //using UnityEditor.ShaderGraph.Internal;
 public class UniversalWeaponScript : MonoBehaviour
@@ -37,6 +38,9 @@ public class UniversalWeaponScript : MonoBehaviour
     public bool hasProjectileLimit;
     public int projectileLimit;
     public int currentAmountOfProjectile;
+
+    public bool rememberProjectilesInList;
+    public List<GameObject> liveProjectileList;
 
     public bool giveInstantiator;
     public bool isDinosaurEggWeapon;
@@ -77,7 +81,7 @@ public class UniversalWeaponScript : MonoBehaviour
     }
     void Shoot()
     {
-        
+
         currentAmountOfProjectile++;
         var instantiated = Instantiate(projectile, projectileOrigin.position, Quaternion.identity);
         if (aimAtClosestTarget)
@@ -106,32 +110,20 @@ public class UniversalWeaponScript : MonoBehaviour
         }
         if (hasProjectileLimit) // il faut merge avant d'utiliser tout ca sinon il y aura des conflits et tout ( en vrai je c pa )
         {
-            if(!isDinosaurEggWeapon)
-        {
-             instantiatedScript.hasProjectileLimit = true;
-            instantiatedScript.instantiator = gameObject;
-        }
+            if (!isDinosaurEggWeapon)
+            {
+                instantiatedScript.hasProjectileLimit = true;
+                instantiatedScript.instantiator = gameObject;
+            }
             else
             {
                 instantiated.GetComponent<AllyDinoScript>().instantiator = gameObject;
                 instantiated.GetComponent<AllyDinoScript>().hasProjectileLimit = true;
             }
-               
-            
-
-            //dans le projectile dans la fonction destruction:
-            /*if (hasProjectileLimit)
+            if (rememberProjectilesInList)
             {
-                instantiator.GetComponent<UniversalWeaponScript>().currentAmountOfProjectile--;
+                liveProjectileList.Add(instantiated);
             }
-
-            public void NewProjectileStats(float damage,float speed,float SizeMultiplier)
-            {
-                currentDamage = damage;
-                currentSpeed = speed;
-                currentSizeMultiplier = SizeMultiplier;
-            }
-            */
         }
     }
 
@@ -183,6 +175,29 @@ public class UniversalWeaponScript : MonoBehaviour
         currentProjectileSize = baseProjectileSize * projectileSizeMultiplier;
     }
 
+    public void ResetThisWeapon()
+    {
+        if (rememberProjectilesInList)
+        {
+            for (int i = 0; i < liveProjectileList.Count; i++)
+            {
+                
+                if (isDinosaurEggWeapon)
+                {
+                    
+                    liveProjectileList[i].GetComponent<AllyDinoScript>().StartTimedDestructionInitiation();
+                }
+                else
+                {
+                    liveProjectileList[i].GetComponent<UniversalProjectileScript>().StartTimedDestructionInitiation();
+                }
+                
+            }
+            //liveProjectileList.Clear();
+        }
+        currentAmountOfProjectile = 0;        
+    }
+
     private void OnDrawGizmos()
     {
         // Set the color
@@ -200,7 +215,7 @@ public class UniversalWeaponScript : MonoBehaviour
     {
         if (attackSpeedScalesWithVelocity)
         {
-            currentFireRate = (baseFireRate / (currentVelocity * ScaleSpeedIntensity));
+            currentFireRate = (baseFireRate / (currentVelocity * ScaleSpeedIntensity * fireRateMultiplier));
             if (currentFireRate > 2.3f)
             {
                 currentFireRate = 2.3f;

@@ -64,7 +64,9 @@ MonoBehaviour:
   hasProjectileLimit: 1
   projectileLimit: 3
   currentAmountOfProjectile: 0
-  giveInstantiator: 1
+  rememberProjectilesInList: 1
+  liveProjectileList: []
+  giveInstantiator: 0
   isDinosaurEggWeapon: 1
   oldPos: {x: 0, y: 0, z: 0}
   currentVelocity: 0

@@ -9,7 +9,7 @@ public class WeaponHandlerScript : MonoBehaviour
     {
         for (int i = 0; i < weaponsList.Count; i++)
         {
-            weaponsList[i].GetComponent<UniversalWeaponScript>().currentAmountOfProjectile = 0;
+            weaponsList[i].GetComponent<UniversalWeaponScript>().ResetThisWeapon();
         }
     }
 }

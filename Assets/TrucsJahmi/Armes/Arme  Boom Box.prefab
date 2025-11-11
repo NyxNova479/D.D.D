@@ -58,7 +58,7 @@ MonoBehaviour:
   projectileSpeed: 0
   range: 20
   attackSpeedScalesWithVelocity: 1
-  ScaleSpeedIntensity: 0
+  ScaleSpeedIntensity: 2
   aimAtClosestTarget: 0
   targetLayer: 7
   hasProjectileLimit: 0

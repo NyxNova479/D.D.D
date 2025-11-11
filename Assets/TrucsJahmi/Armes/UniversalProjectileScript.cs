@@ -100,7 +100,10 @@ public class UniversalProjectileScript : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
+    public void StartTimedDestructionInitiation() // la coroutine ne fonctionnait pas avec getComponent
+    {
+        StartCoroutine(TimedDestructionInitiation());
+    }
     IEnumerator TimedDestructionInitiation() // detruire apres 0.1 seconde
     {
         yield return new WaitForSeconds(0.1f);

@@ -26,6 +26,7 @@ public class AllyDinoScript : MonoBehaviour
     [Header("taille")]
     public float size;
     public float currentSizeMultiplier;
+
     [Header("destruction")]
     public GameObject instantiateOnDestruction;
     public float lifeSpan;
@@ -142,7 +143,7 @@ public class AllyDinoScript : MonoBehaviour
             currentHitsAmount++;
             var hitScript = hitCollider.gameObject.GetComponent<UniversalEnemyScript>();
             hitScript.currentHealthPoint -= currentDamage; // infliger des degats a l'objet touche
-            hitScript.colorOfTakenDamage = damageDisplayColor; //Color.green;
+            hitScript.colorOfTakenDamage = damageDisplayColor; // la couleur de l'affichage des degats
             /*
             var hitScript = hitCollider.gameObject.GetComponent<UniversalEnemyScript>();
         hitScript.currentHealthPoint -= currentDamage; // infliger des degats a l'objet touche
@@ -261,6 +262,10 @@ public class AllyDinoScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void StartTimedDestructionInitiation() // la coroutine ne fonctionnait pas avec getComponent
+    {
+        StartCoroutine(TimedDestructionInitiation());
+    }
     IEnumerator TimedDestructionInitiation() // detruire apres 0.1 seconde
     {
         if (destroyBool && hasProjectileLimit)
@@ -268,6 +273,7 @@ public class AllyDinoScript : MonoBehaviour
             instantiator.GetComponent<UniversalWeaponScript>().currentAmountOfProjectile--;
             destroyBool = false;
         }
+        instantiator.GetComponent<UniversalWeaponScript>().liveProjectileList.Remove(gameObject);
         yield return new WaitForSeconds(0.1f);
         InitiateDestruction();
     }
