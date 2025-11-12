@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungerPercentage: 40
   succefulAttacksCount: 0
-  hungerRestoredOnHit: 12
+  hungerRestoredOnHit: 10
   baseDamage: 50
   currentDamage: 50
   currentAttackRate: 2

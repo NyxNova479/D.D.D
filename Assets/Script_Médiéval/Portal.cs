@@ -30,7 +30,7 @@ public class Portal : MonoBehaviour
     void Start()
     {
 
-        transform.position = new Vector3(Mathf.Pow(-1, Random.Range(-1, 1)) * 65, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1)) * 65);
+        transform.position = new Vector3(Mathf.Pow(-1, Random.Range(-1, 1)) * 55, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1)) * 55);
 
         for (int i = 0; i < 30; i++)
         {
@@ -74,7 +74,7 @@ public class Portal : MonoBehaviour
 
                                 Crown.take = false;
                                 Crown.crown_goal -= 1;
-                                transform.position = new Vector3(Mathf.Pow(-1, Random.Range(-1, 1)) * 65, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1)) * 65);
+                                transform.position = new Vector3(Mathf.Pow(-1, Random.Range(-1, 1)) * 55, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1)) * 55);
 
                             }
                         }
@@ -97,7 +97,7 @@ public class Portal : MonoBehaviour
 
                                 Crown.take = false;
                                 Pique.activate = (false == Pique.activate);
-                                transform.position = new Vector3( Mathf.Pow(-1,Random.Range(-1,1))*65, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1))*65);
+                                transform.position = new Vector3( Mathf.Pow(-1,Random.Range(-1,1))*55, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1))*55);
 
                             }
                         }
@@ -119,7 +119,7 @@ public class Portal : MonoBehaviour
                             {
 
                                 Crown.take = false;
-                                transform.position = new Vector3(Mathf.Pow(-1, Random.Range(-1, 1)) * 65, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1)) * 65);
+                                transform.position = new Vector3(Mathf.Pow(-1, Random.Range(-1, 1)) * 55, 0.6f, Mathf.Pow(-1, Random.Range(-1, 1)) * 55);
 
                             }
                         }
