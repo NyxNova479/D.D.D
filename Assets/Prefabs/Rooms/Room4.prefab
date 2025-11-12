@@ -64,9 +64,9 @@ Transform:
   - {fileID: 2948269300259794313}
   - {fileID: 3639511730961658681}
   - {fileID: 4657073667635587989}
-  - {fileID: 8738697581354709070}
   - {fileID: 2698072630817353881}
   - {fileID: 4106250632755171128}
+  - {fileID: 8738697581354709070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6649289166095407221
@@ -588,7 +588,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crown: {fileID: 310736184094941438}
   portal: {fileID: 8944594152067908223}
-  player: {fileID: 1925873226565265906, guid: 2553cec8fdb3eb643bbe9f2ec880c472, type: 3}
   pique: {fileID: 5359650592089784945}
   point: {r: 1, g: 0, b: 0.795835, a: 0}
   piquer: {r: 1, g: 0, b: 0.05809641, a: 0}

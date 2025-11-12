@@ -8,6 +8,9 @@ public class Portal : MonoBehaviour
     GameObject crown;
 
     [SerializeField]
+    GameObject socle;
+
+    [SerializeField]
     GameObject portal;
 
     [SerializeField]
@@ -36,7 +39,9 @@ public class Portal : MonoBehaviour
         {
             for (int j = 0; j < 30; j++)
             {
-                Instantiate(pique, new Vector3(j*5-70+ Random.Range(-4, 1), -4.19f, i*5-70 + Random.Range(-4, 1)), Quaternion.identity);
+                pique = Instantiate(pique, new Vector3(j*5-70+ Random.Range(-4, 1), -4.19f, i*5-70 + Random.Range(-4, 1)), Quaternion.identity);
+                pique.transform.parent = socle.transform;
+                pique.transform.localScale = new Vector3 (1, 1, 1);
             }
         }
     }
