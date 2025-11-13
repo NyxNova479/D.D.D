@@ -13,6 +13,8 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
+    public bool choosing = false;
+
     [Header("Main Menus")]
     public GameObject pauseMenuUI;
     public GameObject MainUI;
@@ -68,6 +70,11 @@ public class PauseMenu : MonoBehaviour
                 else
                     Resume();
             }
+            else if (choosing)
+            {
+
+            }
+
             else
                 Pause();
         }
@@ -97,12 +104,22 @@ public class PauseMenu : MonoBehaviour
         PauseGame();
     }
 
+    public void DoorUi()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+        choosing = true;
+        inputActions.FindActionMap("Player").Disable();
+        //  inputActions.FindActionMap("Ui").Enable();
+    }
+
     public void PauseGame()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;
-        GameIsPaused = true;
+       // GameIsPaused = true;
         inputActions.FindActionMap("Player").Disable();
       //  inputActions.FindActionMap("Ui").Enable();
     }
@@ -122,6 +139,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        choosing = false;
         inputActions.FindActionMap("Player").Enable();
     }
 
@@ -134,6 +152,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        choosing = false;
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
         MainUI.SetActive(true);
