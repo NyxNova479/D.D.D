@@ -8473,6 +8473,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2658187498258035571, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
+      propertyPath: maxSpawnStacking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658187498258035571, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
       propertyPath: enemies.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -56022,6 +56026,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &2048487710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5102469465820988517, guid: 094129aa2883e27469e45f6faec9b960, type: 3}
+  m_PrefabInstance: {fileID: 4027961955012311329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2050514219
 GameObject:
   m_ObjectHideFlags: 0
@@ -58440,6 +58449,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 8863
       objectReference: {fileID: 0}
+    - target: {fileID: 1861021167656021012, guid: 094129aa2883e27469e45f6faec9b960, type: 3}
+      propertyPath: socle
+      value: 
+      objectReference: {fileID: 2048487710}
     - target: {fileID: 2085115839623423993, guid: 094129aa2883e27469e45f6faec9b960, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -58716,6 +58729,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1566256066}
+    - target: {fileID: 8944594152067908223, guid: 094129aa2883e27469e45f6faec9b960, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9010656183800845799, guid: 094129aa2883e27469e45f6faec9b960, type: 3}
       propertyPath: player
       value: 

@@ -90,6 +90,7 @@ public class UniversalWeaponScript : MonoBehaviour
 
             if (closestEnemy != null) // si il y a un resultat a la fonction "FindClosestObject"
             {
+                //Debug.Log("ennemi proche: " + closestEnemy);
                 instantiated.transform.LookAt(closestEnemy.transform.position); // on oriente le projectile vers la cible
             }
         }
@@ -129,33 +130,37 @@ public class UniversalWeaponScript : MonoBehaviour
 
     GameObject FindClosestObject(Vector3 center, float radius, int layer) // une fonction pour trouver l'objet le plus proche depuis un point, dans un rayon sur une couche de son choix
     {
-        float smallestDistance = radius * radius; // = la plus grande variable 
-        GameObject closestObject = gameObject; // on est oblige de mettre un gameObject par defaut sinon unity explose
+        float smallestDistance = Mathf.Infinity; // = la plus grande variable 
+        GameObject closestObject = null; // on est oblige de mettre une valeur par defaut sinon unity explose
 
         Collider[] hitColliders = Physics.OverlapSphere(center, radius * radius, 1 << layer); // on cherche tout les gameobjects dans un rayon et on les met dans l'array "hitColliders"
         // on multiplie radius au carre pour eviter d'utiliser "magnitude" plus bas qui bien plus couteux en ressources
 
         foreach (var hitCollider in hitColliders) // pour chaques gameobjects trouves
         {
-            float currentDistance = (center - hitCollider.transform.position).sqrMagnitude; // on calcul la distance entre le centre et l'objet actuel
-                                                                           // on evite la racine carre avec "sqrMagnitude"
-            //Debug.Log(currentDistance);                                                                                 // on cherche la distance la plus petite
-            if (smallestDistance > currentDistance) // si la distance actuelle est plus petite que la precedente
-            {
+            
+                float currentDistance = (center - hitCollider.transform.position).sqrMagnitude; // on calcul la distance entre le centre et l'objet actuel
+                                                                                                // on evite la racine carre avec "sqrMagnitude"
+                                                                     //Debug.Log(currentDistance);                                                                                 // on cherche la distance la plus petite
+                if (smallestDistance > currentDistance) // si la distance actuelle est plus petite que la precedente
+                {
                 
-                smallestDistance = currentDistance; // la distance actuelle devient la distance la plus courte
-                closestObject = hitCollider.transform.gameObject; // le resultat final = l'objet actuel
-            }
+                    smallestDistance = currentDistance; // la distance actuelle devient la distance la plus courte
+                    closestObject = hitCollider.transform.gameObject; // le resultat final = l'objet actuel
+                }
+
             
         } // apres avoir compare toutes les distances de tout les gameobject trouves on se retrouve avec la distance la plus petite
 
-        if (closestObject != gameObject) // si le resultat n'est pas le gameobject etabli par defaut
+        if (closestObject != null) // si le resultat n'est pas le gameobject etabli par defaut
         {
-            
+            //Debug.Log(closestObject);
             return (closestObject); // le resultat de la fonction = closestObject;
+            
         }
         else
         {
+            Debug.Log("rien");
             return (null); // le resultat de la fonction est rien
         }
     }
