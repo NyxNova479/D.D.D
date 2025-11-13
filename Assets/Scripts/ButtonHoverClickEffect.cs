@@ -38,13 +38,14 @@ public class UIButtonInteractive : MonoBehaviour, IPointerEnterHandler, IPointer
 
     void Update()
     {
-        // Scale fluide
+        // Scale fluide (indépendant du timeScale)
         Vector3 targetScale = isHovered ? initialScale * scaleAmount : initialScale;
-        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * smoothSpeed);
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.unscaledDeltaTime * smoothSpeed);
 
-        // Rotation fluide
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(targetRotation), Time.deltaTime * tiltSmooth);
+        // Rotation fluide (indépendant du timeScale)
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(targetRotation), Time.unscaledDeltaTime * tiltSmooth);
     }
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {

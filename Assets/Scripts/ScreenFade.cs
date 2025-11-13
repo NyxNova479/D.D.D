@@ -45,24 +45,24 @@ public class ScreenFader : MonoBehaviour
         float timer = 0f;
         while (timer < fadeDuration)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             alpha = Mathf.Lerp(0f, 1f, timer / fadeDuration);
             yield return null;
         }
         alpha = 1f;
-        OnFadeToBlack?.Invoke(); 
+        OnFadeToBlack?.Invoke();
 
-       
+        OnFadeComplete?.Invoke();
         timer = 0f;
         while (timer < fadeDuration)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             alpha = Mathf.Lerp(1f, 0f, timer / fadeDuration);
             yield return null;
         }
         alpha = 0f;
 
         isFading = false;
-        OnFadeComplete?.Invoke(); 
+       
     }
 }

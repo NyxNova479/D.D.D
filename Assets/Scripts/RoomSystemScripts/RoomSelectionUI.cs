@@ -48,12 +48,25 @@ public class RoomSelectionUI : MonoBehaviour
                     fader.OnFadeToBlack -= OnBlack;
                 }
 
+                void OnComplete()
+                {
+                    //Debug.Log("Le fondu est terminé !");
+                    // Ici tu peux remettre les contrôles, etc.
+                    // Exemple :
+                    psscript.Resume();
+
+                    // Se désabonne aussi
+                    fader.OnFadeComplete -= OnComplete;
+                }
+
                 // Abonnement temporaire à l'événement de fondu
                 fader.OnFadeToBlack += OnBlack;
+                fader.OnFadeComplete += OnComplete;
 
                 // Reprend le jeu et démarre la transition
-                psscript.Resume();
                 fader.StartFade();
+               // fader.OnFadeComplete;
+                
             });
         }
     }

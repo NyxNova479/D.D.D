@@ -24,6 +24,14 @@ public class Crown : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        crown_goal = Random.Range(3,8);
+
+        crown.transform.position = new Vector3(socle.transform.position.x, 3, socle.transform.position.z);
+
+    }
+
+    private void Awake()
+    {
         
     }
 
