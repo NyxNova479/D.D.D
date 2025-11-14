@@ -42,6 +42,8 @@ public class UniversalWeaponScript : MonoBehaviour
     public bool rememberProjectilesInList;
     public List<GameObject> liveProjectileList;
 
+    bool resetIsNotDone;
+
     public bool giveInstantiator;
     public bool isDinosaurEggWeapon;
     public Vector3 oldPos;
@@ -76,7 +78,10 @@ public class UniversalWeaponScript : MonoBehaviour
             }
         }
 
-        
+        if (resetIsNotDone)
+        {
+            ResetThisWeapon();
+        }
 
     }
     void Shoot()
@@ -182,23 +187,36 @@ public class UniversalWeaponScript : MonoBehaviour
     {
         if (rememberProjectilesInList)
         {
-            for (int i = 0; i < liveProjectileList.Count; i++)
+            resetIsNotDone = true;
+            if (liveProjectileList.Count != 0)
             {
-                
+                int listCount = liveProjectileList.Count;
+                for (int i = 0; i < liveProjectileList.Count; i++)
+                {
+                    Debug.Log(i);
+                    if (isDinosaurEggWeapon)
+                    {
+                        liveProjectileList[0].GetComponent<AllyDinoScript>().StartTimedDestructionInitiation();
+                    }
+                    else
+                    {
+                        liveProjectileList[0].GetComponent<UniversalProjectileScript>().StartTimedDestructionInitiation();
+                    }
+                }
+            }
+            else
+            {
+                resetIsNotDone = false;
+            }
+            /*foreach (GameObject projectile in liveProjectileList)
+            {
                 if (isDinosaurEggWeapon)
                 {
-                    
-                    liveProjectileList[i].GetComponent<AllyDinoScript>().StartTimedDestructionInitiation();
+                    projectile.GetComponent<AllyDinoScript>().StartTimedDestructionInitiation();
                 }
-                else
-                {
-                    liveProjectileList[i].GetComponent<UniversalProjectileScript>().StartTimedDestructionInitiation();
-                }
-                
-            }
-            //liveProjectileList.Clear();
+            }*/
+            //currentAmountOfProjectile = 0;     //liveProjectileList.Clear();   
         }
-        currentAmountOfProjectile = 0;        
     }
 
     private void OnDrawGizmos()

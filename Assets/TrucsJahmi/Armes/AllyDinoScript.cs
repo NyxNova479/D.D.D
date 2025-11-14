@@ -274,7 +274,7 @@ public class AllyDinoScript : MonoBehaviour
             destroyBool = false;
         }
         instantiator.GetComponent<UniversalWeaponScript>().liveProjectileList.Remove(gameObject);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.4f);
         InitiateDestruction();
     }
     private void OnDrawGizmos()

@@ -8492,7 +8492,7 @@ PrefabInstance:
       objectReference: {fileID: 1117063464}
     - target: {fileID: 2658187498258035571, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
       propertyPath: spawnRate
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2658187498258035571, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
       propertyPath: groundLayer
@@ -8501,6 +8501,18 @@ PrefabInstance:
     - target: {fileID: 2658187498258035571, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
       propertyPath: climbableLayer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658187498258035571, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
+      propertyPath: maxSpawnDistance
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658187498258035571, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
+      propertyPath: maxSpawnStacking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658187498258035571, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
+      propertyPath: minSpawnDistance
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2658187498258035571, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
       propertyPath: enemies.Array.size
@@ -26898,9 +26910,9 @@ MonoBehaviour:
   currentMaxHealthPoint: 0
   currentHealthPoint: 0
   healthPointMultiplier: 1
-  basePassiveHealing: 0
+  basePassiveHealing: 11
   currentPassiveHealing: 0
-  passiveHealingMultiplier: 0
+  passiveHealingMultiplier: 1
   baseAttackDamageMultiplier: 1
   currentAttackDamageMultiplier: 0
   baseAttackRateMultiplier: 1
@@ -57707,6 +57719,14 @@ PrefabInstance:
       propertyPath: projectileOrigin
       value: 
       objectReference: {fileID: 188993897}
+    - target: {fileID: 5126451106939488557, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
+      propertyPath: baseFireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5126451106939488557, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
+      propertyPath: projectileLimit
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5126451106939488557, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
       propertyPath: projectileOrigin
       value: 
