@@ -49,7 +49,7 @@ MonoBehaviour:
   baseDamage: 10
   currentDamage: 0
   damageMultiplier: 1
-  baseFireRate: 1
+  baseFireRate: 2
   currentFireRate: 0
   fireRateMultiplier: 1
   baseProjectileSize: 1
@@ -58,12 +58,15 @@ MonoBehaviour:
   projectileSpeed: 0
   range: 20
   attackSpeedScalesWithVelocity: 1
-  ScaleSpeedIntensity: 2
+  ScaleSpeedIntensity: 0.3
+  currentMovementSpeed: 0
   aimAtClosestTarget: 0
   targetLayer: 7
   hasProjectileLimit: 0
   projectileLimit: 0
   currentAmountOfProjectile: 0
+  rememberProjectilesInList: 0
+  liveProjectileList: []
   giveInstantiator: 0
   isDinosaurEggWeapon: 0
   oldPos: {x: 0, y: 0, z: 0}

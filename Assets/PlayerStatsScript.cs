@@ -35,6 +35,7 @@ public class PlayerStatsScript : MonoBehaviour
     public float jumpHeightMultiplier;
     [Header("General")]
     public PauseMenu pausemenu;
+    public GameObject weaponHandler;
     [Header("UI")]
     public GameObject DeathScreenCanvas;
     public TMP_Text healthUi;
@@ -113,9 +114,13 @@ public class PlayerStatsScript : MonoBehaviour
         currentMaxHealthPoint = baseHealthPoint * healthPointMultiplier;
         currentPassiveHealing = basePassiveHealing * passiveHealingMultiplier;
         UpdateHealthUI();
+        UpdateWeaponsStats();
     }
-
-    void UpdateHealthUI()
+    void UpdateWeaponsStats()
+    {
+        weaponHandler.GetComponent<WeaponHandlerScript>().UpdateAllWeaponsStats(currentAttackDamageMultiplier, currentAttackRateMultiplier, currentMovementSpeed);
+    }
+        void UpdateHealthUI()
     {
         if (healthFill)
             healthFill.fillAmount = currentHealthPoint / currentMaxHealthPoint;

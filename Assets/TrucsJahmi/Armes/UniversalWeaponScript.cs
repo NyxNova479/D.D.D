@@ -29,6 +29,9 @@ public class UniversalWeaponScript : MonoBehaviour
 
     public bool attackSpeedScalesWithVelocity;
     public float ScaleSpeedIntensity; // pas 0 tdb
+    public float currentMovementSpeed;
+
+    float velocityMeasurementTimer;
     
     [Header("cible de l'arme")]
     public bool aimAtClosestTarget;
@@ -51,8 +54,9 @@ public class UniversalWeaponScript : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("SecondTimer");
+        //StartCoroutine("SecondTimer");
         oldPos = transform.position;
+        
         UpdateWeaponStats();
     }
 
@@ -60,7 +64,7 @@ public class UniversalWeaponScript : MonoBehaviour
     {
         if (currentFireRateTimer < currentFireRate) // un timer simple
         {
-                currentFireRateTimer += Time.deltaTime;
+            currentFireRateTimer += Time.deltaTime;
         }
         else // quand le timer est a 100%
         {
@@ -83,11 +87,28 @@ public class UniversalWeaponScript : MonoBehaviour
             ResetThisWeapon();
         }
 
+        if (attackSpeedScalesWithVelocity)
+        {
+            if (transform.position != oldPos)
+            {
+                oldPos = transform.position;
+                currentFireRate = (baseFireRate / (currentMovementSpeed * ScaleSpeedIntensity)) * fireRateMultiplier;
+            }
+            else
+            {
+                currentFireRate = baseFireRate * fireRateMultiplier;
+            }
+                //MeasureVelocity();
+        }        
     }
     void Shoot()
     {
 
-        currentAmountOfProjectile++;
+        if (hasProjectileLimit)
+        {
+            currentAmountOfProjectile++;
+        }
+        
         var instantiated = Instantiate(projectile, projectileOrigin.position, Quaternion.identity);
         if (aimAtClosestTarget)
         {
@@ -168,11 +189,11 @@ public class UniversalWeaponScript : MonoBehaviour
         }
     }
 
-    public void NewWeaponStats(float newDamageMultiplierToAdd, float newFireRateMultiplierToAdd, float newProjectileSizeMultiplierToAdd) // on appel ca quand les statistiques devront changer en temps reel
+    public void NewWeaponStats(float newDamageMultiplier, float newFireRateMultiplier, float newProjectileSizeMultiplier) // on appel ca quand les statistiques devront changer en temps reel
     {
-        damageMultiplier += newDamageMultiplierToAdd;
-        fireRateMultiplier += newFireRateMultiplierToAdd;
-        projectileSizeMultiplier += newProjectileSizeMultiplierToAdd;
+        damageMultiplier = newDamageMultiplier;
+        fireRateMultiplier = newFireRateMultiplier;
+        projectileSizeMultiplier = newProjectileSizeMultiplier;
         UpdateWeaponStats();        
     }
 
@@ -181,6 +202,16 @@ public class UniversalWeaponScript : MonoBehaviour
         currentDamage = baseDamage * damageMultiplier;
         currentFireRate = baseFireRate * fireRateMultiplier;
         currentProjectileSize = baseProjectileSize * projectileSizeMultiplier;
+        /*if (attackSpeedScalesWithVelocity)
+        {
+            currentMovementSpeed = GetComponentInParent<PlayerStatsScript>().currentMovementSpeed;
+            currentFireRate = (baseFireRate * fireRateMultiplier) / currentMovementSpeed;
+        }*/
+    }
+
+    public void UpdateMovementSpeed(float newMovementSpeed)
+    {
+        currentMovementSpeed = newMovementSpeed;
     }
 
     public void ResetThisWeapon()
@@ -190,19 +221,15 @@ public class UniversalWeaponScript : MonoBehaviour
             resetIsNotDone = true;
             if (liveProjectileList.Count != 0)
             {
-                int listCount = liveProjectileList.Count;
-                for (int i = 0; i < liveProjectileList.Count; i++)
+                if (isDinosaurEggWeapon)
                 {
-                    Debug.Log(i);
-                    if (isDinosaurEggWeapon)
-                    {
-                        liveProjectileList[0].GetComponent<AllyDinoScript>().StartTimedDestructionInitiation();
-                    }
-                    else
-                    {
-                        liveProjectileList[0].GetComponent<UniversalProjectileScript>().StartTimedDestructionInitiation();
-                    }
+                    liveProjectileList[0].GetComponent<AllyDinoScript>().StartTimedDestructionInitiation();
                 }
+                else
+                {
+                    liveProjectileList[0].GetComponent<UniversalProjectileScript>().StartTimedDestructionInitiation();
+                }
+
             }
             else
             {
@@ -232,30 +259,40 @@ public class UniversalWeaponScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
+    void MeasureVelocity()
+    {
+        if (transform.position != oldPos)
+        {
+            if (velocityMeasurementTimer < 0.1f)
+            {
+                velocityMeasurementTimer += Time.deltaTime;
+            }
+            else
+            {
+                velocityMeasurementTimer = 0;
+                currentVelocity = (oldPos - transform.position).magnitude;
+                oldPos = transform.position;
+                currentFireRate = 1 + (baseFireRate / (currentVelocity * ScaleSpeedIntensity)) * fireRateMultiplier;
+            }
+
+        }
+    }
+
     IEnumerator SecondTimer()
     {
         if (attackSpeedScalesWithVelocity)
         {
-            currentFireRate = (baseFireRate / (currentVelocity * ScaleSpeedIntensity * fireRateMultiplier));
-            if (currentFireRate > 2.3f)
+            currentFireRate = (baseFireRate / (currentVelocity * ScaleSpeedIntensity)) * fireRateMultiplier;
+
+            /*if (currentFireRate > 2.3f)
             {
                 currentFireRate = 2.3f;
-            }
+            }*/
         }
         yield return new WaitForSeconds(0.1f);
         currentVelocity = (oldPos - transform.position).magnitude;
+        Debug.Log(currentFireRate);
         oldPos = transform.position;
-        StartCoroutine("SecondTimer");
-        
+        StartCoroutine("SecondTimer");        
     }
-
-    /*
-     
-    if (changementDeSalle)
-    {
-        changementDeSalle = false
-        trucs a faire
-    }
-
-     */
 }

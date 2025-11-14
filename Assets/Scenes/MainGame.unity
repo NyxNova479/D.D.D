@@ -9029,6 +9029,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &486865208 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6556498812890983441, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
+  m_PrefabInstance: {fileID: 725889751029545997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &494298255 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4660257389402817723, guid: 35574bd80a3d2c54ca6274c24da67f68, type: 3}
@@ -26926,6 +26931,7 @@ MonoBehaviour:
   currentJumpHeight: 0
   jumpHeightMultiplier: 1
   pausemenu: {fileID: 1571209116}
+  weaponHandler: {fileID: 486865208}
   DeathScreenCanvas: {fileID: 1295317447}
   healthUi: {fileID: 514046657}
   healthFill: {fileID: 1959742572}
@@ -57721,11 +57727,11 @@ PrefabInstance:
       objectReference: {fileID: 188993897}
     - target: {fileID: 5126451106939488557, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
       propertyPath: baseFireRate
-      value: 1
+      value: 3.33
       objectReference: {fileID: 0}
     - target: {fileID: 5126451106939488557, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
       propertyPath: projectileLimit
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5126451106939488557, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
       propertyPath: projectileOrigin
@@ -57736,16 +57742,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 188993897}
     - target: {fileID: 6209091920694055928, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
+      propertyPath: baseFireRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6209091920694055928, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
       propertyPath: projectileOrigin
       value: 
       objectReference: {fileID: 1117063465}
+    - target: {fileID: 6209091920694055928, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
+      propertyPath: ScaleSpeedIntensity
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6556498812890983441, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
       propertyPath: m_Name
       value: WeaponHandler
       objectReference: {fileID: 0}
     - target: {fileID: 7903439324987189358, guid: 2815bb9c71433684faec36ca33f5667f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
