@@ -71,7 +71,7 @@ public class EnemySpawnerScript : MonoBehaviour
                             for (int f = 0; f < failedSpawns + 1; f++) // on ajoute les enemis qui ont rates leurs spawn
                             {
                                 //                   instantie           un ennemi au hasard                         autour du joueur   la ou il y a un sol approprie + le nombre d'enemi a empiler - la hauteur du joueur pour compensser 
-                                var instatiated = Instantiate(enemies[Random.Range(0, enemies.Length)], player.transform.position + new Vector3(finalXCoords, finalYCoords + f - player.transform.position.y, finalZCoords), transform.rotation); // tu apparait ici
+                                var instatiated = Instantiate(enemies[Random.Range(0, enemies.Length)], player.transform.position + new Vector3(finalXCoords, finalYCoords + f + 0.2f - player.transform.position.y, finalZCoords), transform.rotation); // tu apparait ici
 
                                 instatiated.transform.parent = transform; //les rendre fils de l'enemy spawner 
 

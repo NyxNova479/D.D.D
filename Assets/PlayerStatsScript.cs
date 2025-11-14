@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 public class PlayerStatsScript : MonoBehaviour
 {
     [Header("Health Points")]
@@ -39,6 +41,7 @@ public class PlayerStatsScript : MonoBehaviour
     public Image healthFill;
     void Start()
     {
+        StartCoroutine("SecondTimer");
         StartingSetUpCurrentStats();
         UpdateHealthUI();
         UpdateStats();
@@ -76,7 +79,7 @@ public class PlayerStatsScript : MonoBehaviour
     }
 
     public void TakeDamage(float damage)
-    {        
+    {
         currentHealthPoint -= damage;
         if (currentHealthPoint < 0) currentHealthPoint = 0;
         UpdateHealthUI();
@@ -86,18 +89,33 @@ public class PlayerStatsScript : MonoBehaviour
 
     public void Heal(float amount)
     {
-       /* currentHealthPoint += amount;
-        if (currentHealthPoint > currentMaxHealthPoint) currentHealthPoint = currentMaxHealthPoint;
-        UpdateHealthUI();*/
+        if (currentHealthPoint < currentMaxHealthPoint)
+        {
+            if (currentHealthPoint + amount > currentMaxHealthPoint)
+            {
+                currentHealthPoint += currentMaxHealthPoint - currentHealthPoint;
+            }
+            else
+            {
+                currentHealthPoint += amount;
+            }
+        }
+        UpdateHealthUI();
+    }
+
+    void PassiveHealing()
+    {
+        Heal(currentPassiveHealing);
     }
 
     public void UpdateStats()
     {
         currentMaxHealthPoint = baseHealthPoint * healthPointMultiplier;
+        currentPassiveHealing = basePassiveHealing * passiveHealingMultiplier;
         UpdateHealthUI();
     }
 
-        void UpdateHealthUI()
+    void UpdateHealthUI()
     {
         if (healthFill)
             healthFill.fillAmount = currentHealthPoint / currentMaxHealthPoint;
@@ -112,7 +130,14 @@ public class PlayerStatsScript : MonoBehaviour
     {
         DeathScreenCanvas.SetActive(true);
         pausemenu.PauseGame();
-       // Debug.Log("Player est mort !");
+        Debug.Log("Player est mort !");
 
+    }
+
+    IEnumerator SecondTimer()
+    {
+        yield return new WaitForSeconds(1);
+        PassiveHealing();
+        StartCoroutine("SecondTimer");
     }
 }

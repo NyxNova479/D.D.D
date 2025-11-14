@@ -157,7 +157,7 @@ MonoBehaviour:
   attackTimer: 0
   attackRate: 1
   attackReach: 5
-  movementSpeed: 4.5
+  movementSpeed: 4
   isWalking: 0
   rb: {fileID: 6855653995727848988}
   fallTimer: 0
