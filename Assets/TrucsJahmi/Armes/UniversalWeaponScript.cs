@@ -17,7 +17,7 @@ public class UniversalWeaponScript : MonoBehaviour
     public float baseFireRate;
     public float currentFireRate;
     public float fireRateMultiplier;
-    float currentFireRateTimer;
+    public float currentFireRateTimer;
 
     public float baseProjectileSize;
     public float currentProjectileSize;
@@ -30,6 +30,8 @@ public class UniversalWeaponScript : MonoBehaviour
     public bool attackSpeedScalesWithVelocity;
     public float ScaleSpeedIntensity; // pas 0 tdb
     public float currentMovementSpeed;
+    float movementDetectionTimerBuffer;
+    bool movementDetectionBool;
 
     float velocityMeasurementTimer;
     
@@ -62,6 +64,25 @@ public class UniversalWeaponScript : MonoBehaviour
 
     void Update()
     {
+        if (resetIsNotDone)
+        {
+            ResetThisWeapon();
+        }
+
+        if (attackSpeedScalesWithVelocity)
+        {            
+            if (transform.position != oldPos) // si on bouge
+            {
+                oldPos = transform.position;
+                currentFireRate = (baseFireRate / (currentMovementSpeed * ScaleSpeedIntensity)) * fireRateMultiplier; // la cadance de tir est ameliore selon la vitesse du joueur    
+            }
+            else
+            {               
+                currentFireRate = baseFireRate * fireRateMultiplier; // sinon la cadance de tir est normale           
+            }
+                //MeasureVelocity();
+        } 
+        
         if (currentFireRateTimer < currentFireRate) // un timer simple
         {
             currentFireRateTimer += Time.deltaTime;
@@ -81,25 +102,6 @@ public class UniversalWeaponScript : MonoBehaviour
                 Shoot();
             }
         }
-
-        if (resetIsNotDone)
-        {
-            ResetThisWeapon();
-        }
-
-        if (attackSpeedScalesWithVelocity)
-        {
-            if (transform.position != oldPos)
-            {
-                oldPos = transform.position;
-                currentFireRate = (baseFireRate / (currentMovementSpeed * ScaleSpeedIntensity)) * fireRateMultiplier;
-            }
-            else
-            {
-                currentFireRate = baseFireRate * fireRateMultiplier;
-            }
-                //MeasureVelocity();
-        }        
     }
     void Shoot()
     {
@@ -276,7 +278,7 @@ public class UniversalWeaponScript : MonoBehaviour
         }
     }
 
-    IEnumerator SecondTimer()
+    /*IEnumerator SecondTimer()
     {
         if (attackSpeedScalesWithVelocity)
         {
@@ -285,12 +287,12 @@ public class UniversalWeaponScript : MonoBehaviour
             /*if (currentFireRate > 2.3f)
             {
                 currentFireRate = 2.3f;
-            }*/
+            }
         }
         yield return new WaitForSeconds(0.1f);
         currentVelocity = (oldPos - transform.position).magnitude;
         Debug.Log(currentFireRate);
         oldPos = transform.position;
-        StartCoroutine("SecondTimer");        
-    }
+        //StartCoroutine("SecondTimer");        
+    }*/
 }
