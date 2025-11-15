@@ -113,12 +113,13 @@ public class PlayerStatsScript : MonoBehaviour
     {
         currentMaxHealthPoint = baseHealthPoint * healthPointMultiplier;
         currentPassiveHealing = basePassiveHealing * passiveHealingMultiplier;
+        currentMovementSpeed = baseMovementSpeed * movementSpeedMultiplier;
         UpdateHealthUI();
         UpdateWeaponsStats();
     }
     void UpdateWeaponsStats()
     {
-        weaponHandler.GetComponent<WeaponHandlerScript>().UpdateAllWeaponsStats(currentAttackDamageMultiplier, currentAttackRateMultiplier, currentMovementSpeed);
+        weaponHandler.GetComponent<WeaponHandlerScript>().UpdateAllWeaponsStats(currentAttackDamageMultiplier, currentAttackRateMultiplier, currentAttackSizeMultiplier, currentMovementSpeed);
     }
         void UpdateHealthUI()
     {

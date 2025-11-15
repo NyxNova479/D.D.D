@@ -189,11 +189,12 @@ public class UniversalWeaponScript : MonoBehaviour
         }
     }
 
-    public void NewWeaponStats(float newDamageMultiplier, float newFireRateMultiplier, float newProjectileSizeMultiplier) // on appel ca quand les statistiques devront changer en temps reel
+    public void NewWeaponStats(float newDamageMultiplier, float newFireRateMultiplier, float newProjectileSizeMultiplier, float newMovementSpeed) // on appel ca quand les statistiques devront changer en temps reel
     {
         damageMultiplier = newDamageMultiplier;
         fireRateMultiplier = newFireRateMultiplier;
         projectileSizeMultiplier = newProjectileSizeMultiplier;
+        currentMovementSpeed = newMovementSpeed;
         UpdateWeaponStats();        
     }
 
@@ -209,10 +210,7 @@ public class UniversalWeaponScript : MonoBehaviour
         }*/
     }
 
-    public void UpdateMovementSpeed(float newMovementSpeed)
-    {
-        currentMovementSpeed = newMovementSpeed;
-    }
+    
 
     public void ResetThisWeapon()
     {

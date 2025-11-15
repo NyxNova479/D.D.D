@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class OSEF_PV_Script : MonoBehaviour
+public class OSEF_Damage_Script : MonoBehaviour
 {
-    public float multiplicativeHPBonus;
+    public float multiplicativeDamageBonus;
     public bool hasBeenApplied;
     public GameObject player;
     void Start()
@@ -16,7 +16,7 @@ public class OSEF_PV_Script : MonoBehaviour
         if (!hasBeenApplied)
         {
             var playerStatScript = player.GetComponent<PlayerStatsScript>();
-            playerStatScript.healthPointMultiplier += multiplicativeHPBonus;
+            playerStatScript.currentAttackDamageMultiplier += multiplicativeDamageBonus;
             playerStatScript.UpdateStats();
             hasBeenApplied = true;
         }
