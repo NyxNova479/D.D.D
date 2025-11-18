@@ -17,7 +17,7 @@ public class UniversalWeaponScript : MonoBehaviour
     public float baseFireRate;
     public float currentFireRate;
     public float fireRateMultiplier;
-    float currentFireRateTimer;
+    public float currentFireRateTimer;
 
     public float baseProjectileSize;
     public float currentProjectileSize;
@@ -29,6 +29,11 @@ public class UniversalWeaponScript : MonoBehaviour
 
     public bool attackSpeedScalesWithVelocity;
     public float ScaleSpeedIntensity; // pas 0 tdb
+    public float currentMovementSpeed;
+    float movementDetectionTimerBuffer;
+    bool movementDetectionBool;
+
+    float velocityMeasurementTimer;
     
     [Header("cible de l'arme")]
     public bool aimAtClosestTarget;
@@ -42,6 +47,8 @@ public class UniversalWeaponScript : MonoBehaviour
     public bool rememberProjectilesInList;
     public List<GameObject> liveProjectileList;
 
+    bool resetIsNotDone;
+
     public bool giveInstantiator;
     public bool isDinosaurEggWeapon;
     public Vector3 oldPos;
@@ -49,16 +56,36 @@ public class UniversalWeaponScript : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("SecondTimer");
+        //StartCoroutine("SecondTimer");
         oldPos = transform.position;
+        
         UpdateWeaponStats();
     }
 
     void Update()
     {
+        if (resetIsNotDone)
+        {
+            ResetThisWeapon();
+        }
+
+        if (attackSpeedScalesWithVelocity)
+        {            
+            if (transform.position != oldPos) // si on bouge
+            {
+                oldPos = transform.position;
+                currentFireRate = (baseFireRate / (currentMovementSpeed * ScaleSpeedIntensity)) * fireRateMultiplier; // la cadance de tir est ameliore selon la vitesse du joueur    
+            }
+            else
+            {               
+                currentFireRate = baseFireRate * fireRateMultiplier; // sinon la cadance de tir est normale           
+            }
+                //MeasureVelocity();
+        } 
+        
         if (currentFireRateTimer < currentFireRate) // un timer simple
         {
-                currentFireRateTimer += Time.deltaTime;
+            currentFireRateTimer += Time.deltaTime;
         }
         else // quand le timer est a 100%
         {
@@ -75,14 +102,15 @@ public class UniversalWeaponScript : MonoBehaviour
                 Shoot();
             }
         }
-
-        
-
     }
     void Shoot()
     {
 
-        currentAmountOfProjectile++;
+        if (hasProjectileLimit)
+        {
+            currentAmountOfProjectile++;
+        }
+        
         var instantiated = Instantiate(projectile, projectileOrigin.position, Quaternion.identity);
         if (aimAtClosestTarget)
         {
@@ -141,7 +169,7 @@ public class UniversalWeaponScript : MonoBehaviour
             
                 float currentDistance = (center - hitCollider.transform.position).sqrMagnitude; // on calcul la distance entre le centre et l'objet actuel
                                                                                                 // on evite la racine carre avec "sqrMagnitude"
-                                                                     //Debug.Log(currentDistance);                                                                                 // on cherche la distance la plus petite
+                // on cherche la distance la plus petite
                 if (smallestDistance > currentDistance) // si la distance actuelle est plus petite que la precedente
                 {
                 
@@ -154,22 +182,21 @@ public class UniversalWeaponScript : MonoBehaviour
 
         if (closestObject != null) // si le resultat n'est pas le gameobject etabli par defaut
         {
-            //Debug.Log(closestObject);
             return (closestObject); // le resultat de la fonction = closestObject;
             
         }
         else
         {
-            Debug.Log("rien");
             return (null); // le resultat de la fonction est rien
         }
     }
 
-    public void NewWeaponStats(float newDamageMultiplierToAdd, float newFireRateMultiplierToAdd, float newProjectileSizeMultiplierToAdd) // on appel ca quand les statistiques devront changer en temps reel
+    public void NewWeaponStats(float newDamageMultiplier, float newFireRateMultiplier, float newProjectileSizeMultiplier, float newMovementSpeed) // on appel ca quand les statistiques devront changer en temps reel
     {
-        damageMultiplier += newDamageMultiplierToAdd;
-        fireRateMultiplier += newFireRateMultiplierToAdd;
-        projectileSizeMultiplier += newProjectileSizeMultiplierToAdd;
+        damageMultiplier = newDamageMultiplier;
+        fireRateMultiplier = newFireRateMultiplier;
+        projectileSizeMultiplier = newProjectileSizeMultiplier;
+        currentMovementSpeed = newMovementSpeed;
         UpdateWeaponStats();        
     }
 
@@ -178,29 +205,45 @@ public class UniversalWeaponScript : MonoBehaviour
         currentDamage = baseDamage * damageMultiplier;
         currentFireRate = baseFireRate * fireRateMultiplier;
         currentProjectileSize = baseProjectileSize * projectileSizeMultiplier;
+        /*if (attackSpeedScalesWithVelocity)
+        {
+            currentMovementSpeed = GetComponentInParent<PlayerStatsScript>().currentMovementSpeed;
+            currentFireRate = (baseFireRate * fireRateMultiplier) / currentMovementSpeed;
+        }*/
     }
+
+    
 
     public void ResetThisWeapon()
     {
         if (rememberProjectilesInList)
         {
-            for (int i = 0; i < liveProjectileList.Count; i++)
+            resetIsNotDone = true;
+            if (liveProjectileList.Count != 0)
             {
-                
                 if (isDinosaurEggWeapon)
                 {
-                    
-                    liveProjectileList[i].GetComponent<AllyDinoScript>().StartTimedDestructionInitiation();
+                    liveProjectileList[0].GetComponent<AllyDinoScript>().StartTimedDestructionInitiation();
                 }
                 else
                 {
-                    liveProjectileList[i].GetComponent<UniversalProjectileScript>().StartTimedDestructionInitiation();
+                    liveProjectileList[0].GetComponent<UniversalProjectileScript>().StartTimedDestructionInitiation();
                 }
-                
+
             }
-            //liveProjectileList.Clear();
+            else
+            {
+                resetIsNotDone = false;
+            }
+            /*foreach (GameObject projectile in liveProjectileList)
+            {
+                if (isDinosaurEggWeapon)
+                {
+                    projectile.GetComponent<AllyDinoScript>().StartTimedDestructionInitiation();
+                }
+            }*/
+            //currentAmountOfProjectile = 0;     //liveProjectileList.Clear();   
         }
-        currentAmountOfProjectile = 0;        
     }
 
     private void OnDrawGizmos()
@@ -216,30 +259,40 @@ public class UniversalWeaponScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    IEnumerator SecondTimer()
+    void MeasureVelocity()
+    {
+        if (transform.position != oldPos)
+        {
+            if (velocityMeasurementTimer < 0.1f)
+            {
+                velocityMeasurementTimer += Time.deltaTime;
+            }
+            else
+            {
+                velocityMeasurementTimer = 0;
+                currentVelocity = (oldPos - transform.position).magnitude;
+                oldPos = transform.position;
+                currentFireRate = 1 + (baseFireRate / (currentVelocity * ScaleSpeedIntensity)) * fireRateMultiplier;
+            }
+
+        }
+    }
+
+    /*IEnumerator SecondTimer()
     {
         if (attackSpeedScalesWithVelocity)
         {
-            currentFireRate = (baseFireRate / (currentVelocity * ScaleSpeedIntensity * fireRateMultiplier));
-            if (currentFireRate > 2.3f)
+            currentFireRate = (baseFireRate / (currentVelocity * ScaleSpeedIntensity)) * fireRateMultiplier;
+
+            /*if (currentFireRate > 2.3f)
             {
                 currentFireRate = 2.3f;
             }
         }
         yield return new WaitForSeconds(0.1f);
         currentVelocity = (oldPos - transform.position).magnitude;
+        Debug.Log(currentFireRate);
         oldPos = transform.position;
-        StartCoroutine("SecondTimer");
-        
-    }
-
-    /*
-     
-    if (changementDeSalle)
-    {
-        changementDeSalle = false
-        trucs a faire
-    }
-
-     */
+        //StartCoroutine("SecondTimer");        
+    }*/
 }
