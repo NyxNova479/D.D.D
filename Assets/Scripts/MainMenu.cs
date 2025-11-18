@@ -20,9 +20,15 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator LoadGame()
     {
-        // petite anim possible ici (fade)
+        // Optional fade animation
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene("MainGame");
+
+        // 1. Store the next scene name in PlayerPrefs
+        PlayerPrefs.SetString("MainGame", "MainGame");
+        PlayerPrefs.Save();
+
+        // 2. Load the loading screen scene instead of MainGame
+        SceneManager.LoadScene("LoadingScreen");
     }
 
 

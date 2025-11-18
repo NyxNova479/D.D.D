@@ -144,14 +144,14 @@ MonoBehaviour:
   groundLayer: 3
   climbableLayer: 6
   enemyLayer: 7
-  baseHealthPoint: 40
+  baseHealthPoint: 5
   scaledBaseHealthPoint: 0
   oldScaledBaseHealthPoint: 0
   currentHealthPoint: 0
   currentHealthPercentage: 0
   oldHealthPercentage: 0
   oldHP: 0
-  baseDamage: 50
+  baseDamage: 2
   scaledBaseDamage: 0
   damageToDeal: 0
   attackTimer: 0
