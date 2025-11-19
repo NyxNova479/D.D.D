@@ -139,10 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 5297671694051499087, guid: 535533d1c1febe04f82772072c449f10, type: 3}
-  playerHeath: {fileID: 0}
   instantiator: {fileID: 0}
   model3D: {fileID: 8027642725345721027}
-  scriptModel3D: {fileID: 0}
   groundLayer: 3
   climbableLayer: 6
   enemyLayer: 7
@@ -167,8 +165,9 @@ MonoBehaviour:
   maxEnemySizeMultiplier: 3
   enemySizeMultiplier: 1
   canMerge: 1
-  maxMergeSize: 25
+  maxMergeSize: 14
   billboard: {fileID: 37224104599998, guid: ff8d474ea633c6644a2d7fe5724baa5c, type: 3}
+  colorOfTakenDamage: {r: 0, g: 0, b: 0, a: 0}
 --- !u!135 &6425944365794464972
 SphereCollider:
   m_ObjectHideFlags: 0
