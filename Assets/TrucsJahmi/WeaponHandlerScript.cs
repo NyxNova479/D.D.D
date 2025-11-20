@@ -12,4 +12,13 @@ public class WeaponHandlerScript : MonoBehaviour
             weaponsList[i].GetComponent<UniversalWeaponScript>().ResetThisWeapon();
         }
     }
+    public void UpdateAllWeaponsStats(float newDamageMP, float newFireRateMP, float newSizeMP, float newMovementSpeed)
+    {
+        for (int i = 0; i < weaponsList.Count; i++)
+        {
+            //weaponsList[i].GetComponent<UniversalWeaponScript>().NewWeaponStats();
+            var currentWeaponScript = weaponsList[i].GetComponent<UniversalWeaponScript>();
+            currentWeaponScript.NewWeaponStats(newDamageMP, newFireRateMP, newSizeMP, newMovementSpeed);
+        }
+    }
 }

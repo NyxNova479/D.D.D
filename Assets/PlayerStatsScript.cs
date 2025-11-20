@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 public class PlayerStatsScript : MonoBehaviour
 {
     [Header("Health Points")]
@@ -33,12 +35,14 @@ public class PlayerStatsScript : MonoBehaviour
     public float jumpHeightMultiplier;
     [Header("General")]
     public PauseMenu pausemenu;
+    public GameObject weaponHandler;
     [Header("UI")]
     public GameObject DeathScreenCanvas;
     public TMP_Text healthUi;
     public Image healthFill;
     void Start()
     {
+        StartCoroutine("SecondTimer");
         StartingSetUpCurrentStats();
         UpdateHealthUI();
         UpdateStats();
@@ -76,7 +80,7 @@ public class PlayerStatsScript : MonoBehaviour
     }
 
     public void TakeDamage(float damage)
-    {        
+    {
         currentHealthPoint -= damage;
         if (currentHealthPoint < 0) currentHealthPoint = 0;
         UpdateHealthUI();
@@ -86,17 +90,37 @@ public class PlayerStatsScript : MonoBehaviour
 
     public void Heal(float amount)
     {
-       /* currentHealthPoint += amount;
-        if (currentHealthPoint > currentMaxHealthPoint) currentHealthPoint = currentMaxHealthPoint;
-        UpdateHealthUI();*/
+        if (currentHealthPoint < currentMaxHealthPoint)
+        {
+            if (currentHealthPoint + amount > currentMaxHealthPoint)
+            {
+                currentHealthPoint += currentMaxHealthPoint - currentHealthPoint;
+            }
+            else
+            {
+                currentHealthPoint += amount;
+            }
+        }
+        UpdateHealthUI();
+    }
+
+    void PassiveHealing()
+    {
+        Heal(currentPassiveHealing);
     }
 
     public void UpdateStats()
     {
         currentMaxHealthPoint = baseHealthPoint * healthPointMultiplier;
+        currentPassiveHealing = basePassiveHealing * passiveHealingMultiplier;
+        currentMovementSpeed = baseMovementSpeed * movementSpeedMultiplier;
         UpdateHealthUI();
+        UpdateWeaponsStats();
     }
-
+    void UpdateWeaponsStats()
+    {
+        weaponHandler.GetComponent<WeaponHandlerScript>().UpdateAllWeaponsStats(currentAttackDamageMultiplier, currentAttackRateMultiplier, currentAttackSizeMultiplier, currentMovementSpeed);
+    }
         void UpdateHealthUI()
     {
         if (healthFill)
@@ -112,7 +136,14 @@ public class PlayerStatsScript : MonoBehaviour
     {
         DeathScreenCanvas.SetActive(true);
         pausemenu.PauseGame();
-       // Debug.Log("Player est mort !");
+        Debug.Log("Player est mort !");
 
+    }
+
+    IEnumerator SecondTimer()
+    {
+        yield return new WaitForSeconds(1);
+        PassiveHealing();
+        StartCoroutine("SecondTimer");
     }
 }

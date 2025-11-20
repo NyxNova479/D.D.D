@@ -2,16 +2,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Unity.Collections;
 using UnityEngine.Audio;
 using TMPro;
 using StarterAssets;
 using Cinemachine;
+using System.Collections;
+using static System.Net.Mime.MediaTypeNames;
 
 
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+
+    public bool choosing = false;
 
     [Header("Main Menus")]
     public GameObject pauseMenuUI;
@@ -28,9 +33,7 @@ public class PauseMenu : MonoBehaviour
     public Slider fovSlider;
     public Camera playerCamera; // pour caméra classique (optionnel)
     public CinemachineVirtualCamera playerVirtualCamera; // pour la Cinemachine
-    public TMP_Dropdown qualityDropdown;
-
-
+    public TMP_Dropdown qualityDropdown;    
 
     [Header("Sound Settings")]
     public Slider volumeSlider;
@@ -41,6 +44,9 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Input Actions")]
     public InputActionAsset inputActions;
+
+    [Header("other UI stuff")]
+    public TMP_Text StartingText;
 
     // Valeur actuelle de la sensibilité (stockée ici)
     public static float mouseSensitivity = 1f;
@@ -55,7 +61,32 @@ public class PauseMenu : MonoBehaviour
         if (volumeSlider != null) volumeSlider.onValueChanged.AddListener(ApplyVolume);
         if (sensitivitySlider != null) sensitivitySlider.onValueChanged.AddListener(ApplySensitivity);
         if (qualityDropdown != null) qualityDropdown.onValueChanged.AddListener(ApplyQuality);
+
+        StartCoroutine(FadeAway());
+
     }
+
+    private IEnumerator FadeAway()
+    {
+
+        yield return new WaitForSeconds(0.7f);
+
+        float elapsed = 0f;
+        Color originalColor = StartingText.color;
+
+        while (elapsed < 2f)
+        {
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / 2f);
+            StartingText.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure completely invisible at end
+        StartingText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
+    }
+
 
     void Update()
     {
@@ -68,6 +99,11 @@ public class PauseMenu : MonoBehaviour
                 else
                     Resume();
             }
+            else if (choosing)
+            {
+
+            }
+
             else
                 Pause();
         }
@@ -97,12 +133,22 @@ public class PauseMenu : MonoBehaviour
         PauseGame();
     }
 
+    public void DoorUi()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+        choosing = true;
+        inputActions.FindActionMap("Player").Disable();
+        //  inputActions.FindActionMap("Ui").Enable();
+    }
+
     public void PauseGame()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;
-        GameIsPaused = true;
+       // GameIsPaused = true;
         inputActions.FindActionMap("Player").Disable();
       //  inputActions.FindActionMap("Ui").Enable();
     }
@@ -122,6 +168,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        choosing = false;
         inputActions.FindActionMap("Player").Enable();
     }
 
@@ -134,6 +181,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        choosing = false;
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
         MainUI.SetActive(true);

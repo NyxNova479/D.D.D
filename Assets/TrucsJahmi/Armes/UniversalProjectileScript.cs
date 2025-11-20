@@ -19,6 +19,7 @@ public class UniversalProjectileScript : MonoBehaviour
     public bool explodes;
     public float explosionRadius;
     public GameObject visualExplosion;
+    public float visualExplosionScale;
     [Header("taille")]
     public float size;
     public float currentSizeMultiplier;
@@ -70,7 +71,7 @@ public class UniversalProjectileScript : MonoBehaviour
             currentSpeed = 0;           
             StartCoroutine("TimedDestructionInitiation");
             var instantiated = Instantiate(visualExplosion, transform.position, Quaternion.identity);
-            instantiated.transform.localScale = new Vector3 (finalExplosionSize, finalExplosionSize, finalExplosionSize) * 2;
+            instantiated.transform.localScale = new Vector3 (visualExplosionScale, visualExplosionScale, visualExplosionScale) * 2;
         }
         else if (currentHitsAmount >= hitsBeforeDestroy) // detruire l'objet si il est a court de collision       
         {

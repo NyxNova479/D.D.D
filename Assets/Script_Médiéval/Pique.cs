@@ -9,7 +9,7 @@ public class Pique : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        activate = false;
     }
 
     // Update is called once per frame
